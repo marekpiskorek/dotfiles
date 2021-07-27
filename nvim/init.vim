@@ -2,7 +2,6 @@ if &compatible
     set nocompatible               " Be iMproved
 endif
 
-" AAA making changes!
 " Spacebar is the leader key
 nnoremap <SPACE> <Nop>
 let mapleader=" " 
