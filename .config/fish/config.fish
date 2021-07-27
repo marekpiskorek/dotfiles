@@ -1,0 +1,1 @@
+/home/marekpiskorek/.config/fish/config.fish
