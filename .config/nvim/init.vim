@@ -1,1 +1,0 @@
-/home/marekpiskorek/.config/nvim/init.vim
