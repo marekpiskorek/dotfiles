@@ -94,6 +94,8 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+" Open NERDTree on startup
+autocmd VimEnter * NERDTree
 
 " Coc
 nmap <silent> gd <Plug>(coc-definition)
