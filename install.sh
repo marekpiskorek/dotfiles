@@ -11,3 +11,6 @@ ln -s ${BASEDIR}/.gitconfig ~/.gitconfig
 
 # tmux
 ln -s ${BASEDIR}/.tmux.conf ~/.tmux.conf
+
+# i3
+ln -s ${BASEDIR}/i3/config ~/.config/i3/config
