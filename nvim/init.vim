@@ -94,8 +94,10 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-" Open NERDTree on startup
-autocmd VimEnter * NERDTree
+" Autostart NERDTree
+au VimEnter * NERDTree
+" Ignore paths in NERDTree
+let g:NERDTreeIgnore = ['^__pycache__$']
 
 " Coc
 nmap <silent> gd <Plug>(coc-definition)
@@ -105,3 +107,5 @@ nmap <silent> gr <Plug>(coc-references)
 " Use Enter for confirming autocompletion
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+" Trigger autocompletion on Ctrl + Space
+inoremap <silent><expr> <c-space> coc#refresh()
