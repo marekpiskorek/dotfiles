@@ -14,18 +14,22 @@ endif
 
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
-Plug 'airblade/vim-gitgutter'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" LSP Native
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+" Git stuff
 Plug 'f-person/git-blame.nvim'
+Plug 'airblade/vim-gitgutter'
+" Telescope requirements
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+" Color scheme
 Plug 'sainnhe/sonokai'
+" ACK
 Plug 'mileszs/ack.vim'
-Plug 'lervag/vimtex'
+" NERDTree
 Plug 'preservim/nerdtree'
-Plug 'ray-x/go.nvim'
 call plug#end()
 
 if !&scrolloff
@@ -51,6 +55,12 @@ set autoindent
 set tabstop=4 shiftwidth=4 expandtab
 "set gdefault " use g flag by default on searches
 set number relativenumber
+
+" folding
+set foldmethod=indent
+set foldlevelstart=99  " start unfolded, only top-level.
+" nnoremap <CR> zr  " map enter to fold
+" nnoremap <BS> zm  " map backspace to unfold
 
 " Make navigating between splits a little easier. Just use leader h,j,k,l
 nnoremap <Leader>j <C-W><C-J>
@@ -95,17 +105,49 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 " Autostart NERDTree
-au VimEnter * NERDTree
+" TODO: do this only in git directories
+" au VimEnter * NERDTree
 " Ignore paths in NERDTree
 let g:NERDTreeIgnore = ['^__pycache__$']
 
-" Coc
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-" Use Enter for confirming autocompletion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-" Trigger autocompletion on Ctrl + Space
-inoremap <silent><expr> <c-space> coc#refresh()
+" LSP config (the mappings used in the default file don't quite work right)
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+" auto-format
+autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
+
+lua <<EOF
+-- Initialize lsp-cmp for autocompletion
+local cmp = require'cmp'
+cmp.setup({
+    snippet = {
+      expand = function(args)
+     end,
+    },
+    mapping = {
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-e>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.close(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    },
+    sources = {
+      { name = 'nvim_lsp' },
+      { name = 'buffer' },
+    }
+  })
+-- Initialize LSP servers
+require'lspconfig'.pyright.setup{}
+  -- Setup lspconfig.
+--require'lspconfig'.pyright.setup {
+--capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+--  }
+EOF
+

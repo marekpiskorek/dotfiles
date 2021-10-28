@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/marek/.local/bin/oh-my-zsh"
+export ZSH="/home/${USER}/.local/bin/oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -65,12 +65,17 @@ HIST_STAMPS="dd/mm/yyyy"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# Plugin settings
+VI_MODE_SET_CURSOR=true
+
+ZSH_TMUX_AUTOSTART=true
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf vi-mode zsh-syntax-highlighting)
+plugins=(git fzf vi-mode tmux zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -91,14 +96,6 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Plugin settings
-VI_MODE_SET_CURSOR=true
-
 # Custom scripts
 #
 # Use lf to switch directories and bind it to ctrl-o
@@ -114,6 +111,15 @@ lfcd () {
 bindkey -s '^o' 'lfcd\n'
 #
 # Aliases
-alias v=nvim
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+alias v=~/bin/appimages/nvim.appimage
 alias g=git
 alias ls="lsd -lah"
+alias run-codility="~/workspace/codility/run django:port=8001 backend-worker webpack-dev-server task-server checker docker_server"
+
+export PATH=$PATH:/home/marekpiskorek/workspace/devel-tools/aws-sso/bin
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
