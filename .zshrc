@@ -115,7 +115,7 @@ bindkey -s '^o' 'lfcd\n'
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias v=~/bin/appimages/nvim.appimage
+alias v=/usr/bin/nvim
 alias g=git
 alias ls="lsd -lah"
 alias run-codility="~/workspace/codility/run django:port=8001 backend-worker webpack-dev-server task-server checker docker_server"

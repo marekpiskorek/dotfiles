@@ -1,153 +1,132 @@
-if &compatible
-    set nocompatible               " Be iMproved
-endif
+" >> load plugins
+call plug#begin(stdpath('data') . 'vimplug')
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'kabouzeid/nvim-lspinstall'
+    Plug 'glepnir/lspsaga.nvim'
+    Plug 'hrsh7th/nvim-compe'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
-" Spacebar is the leader key
-nnoremap <SPACE> <Nop>
-let mapleader=" " 
+    Plug 'glepnir/galaxyline.nvim', { 'branch': 'main' }
+    Plug 'kyazdani42/nvim-web-devicons'  " needed for galaxyline icons
 
-filetype plugin indent on
-" Only set syntax highlighting once!
-if !exists("g:syntax_on")
-    syntax enable
-endif 
+    Plug 'NLKNguyen/papercolor-theme'
+    
+    Plug 'f-person/git-blame.nvim'
+    Plug 'airblade/vim-gitgutter'
 
-" Plugins
-call plug#begin('~/.config/nvim/plugged')
-" LSP Native
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp'
-" Git stuff
-Plug 'f-person/git-blame.nvim'
-Plug 'airblade/vim-gitgutter'
-" Telescope requirements
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-" Color scheme
-Plug 'sainnhe/sonokai'
-" ACK
-Plug 'mileszs/ack.vim'
-" NERDTree
-Plug 'preservim/nerdtree'
+    Plug 'preservim/NERDTree'
+    Plug 'preservim/NERDCommenter'
 call plug#end()
 
-if !&scrolloff
-    set scrolloff=3       " Show next 3 lines while scrolling.
-endif
+colorscheme PaperColor
 
-" Make splits open in more natural locations
-set splitbelow
-set splitright
-
-set display+=lastline
-set clipboard=unnamedplus
-set mouse=
-set ruler               " Show the line and column numbers of the cursor.
-set autoread
-set noshowmode                    " Show current mode.
-set encoding=utf-8              " Set default encoding to UTF-8
-set incsearch                   " Shows the match while typing
-set hlsearch                    " Highlight found searches
-set ignorecase                  " Search case insensitive...
-set smartcase                   " ... but not when search pattern contains upper case characters
-set autoindent
-set tabstop=4 shiftwidth=4 expandtab
-"set gdefault " use g flag by default on searches
+" basic settings
+syntax on
 set number relativenumber
+set ignorecase      " ignore case
+set smartcase     " but don't ignore it, when search string contains uppercase letters
+set incsearch        " do incremental searching
+set visualbell
+set tabstop=4 shiftwidth=4 expandtab
+set ruler
+set smartindent
+set hlsearch
+set autoindent
+set mouse=
+set splitbelow  " more intuitive splits
+set splitright
+set clipboard=unnamedplus  " use system clipboard
 
-" folding
-set foldmethod=indent
-set foldlevelstart=99  " start unfolded, only top-level.
-" nnoremap <CR> zr  " map enter to fold
-" nnoremap <BS> zm  " map backspace to unfold
+if !&scrolloff
+    set scrolloff=3
+end
 
-" Make navigating between splits a little easier. Just use leader h,j,k,l
-nnoremap <Leader>j <C-W><C-J>
-nnoremap <Leader>k <C-W><C-K>
-nnoremap <Leader>l <C-W><C-L>
-nnoremap <Leader>h <C-W><C-H>
+if &compatible
+    set nocompatible
+end
+
+
+" set leader key to space
+nnoremap <SPACE> <Nop>
+let g:mapleader=" "
+
+" Use Control + HJKL to move between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 "This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
 " Open nvimrc file
 nnoremap <Leader>v :vsp $MYVIMRC<CR>
-
 " Source nvimrc file
 nnoremap <Leader>sv :source $MYVIMRC<CR>
- 
-" Configure colorscheme
-let g:sonokai_style = 'andromeda'
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
-colorscheme sonokai
 
-" Telescope
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({}))<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-" Map finder to something intuitive
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+" >> Telescope bindings
+nnoremap <Leader>pp <cmd>lua require'telescope.builtin'.builtin{}<CR>
 
-" Ack
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-" Do not open first result immidiately and use shortcut
-cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack!<Space>
+" most recently used files
+nnoremap <Leader>m <cmd>lua require'telescope.builtin'.oldfiles{}<CR>
 
-" NERDTree keybindings
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
+" find buffer
+nnoremap ; <cmd>lua require'telescope.builtin'.buffers{}<CR>
+
+" find in current buffer
+nnoremap <Leader>/ <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>
+
+" bookmarks
+nnoremap <Leader>' <cmd>lua require'telescope.builtin'.marks{}<CR>
+
+" git files
+nnoremap <Leader>f <cmd>lua require'telescope.builtin'.git_files{}<CR>
+
+" all files
+nnoremap <Leader>bfs <cmd>lua require'telescope.builtin'.find_files{}<CR>
+
+" ripgrep like grep through dir
+nnoremap <Leader>rg <cmd>lua require'telescope.builtin'.live_grep{}<CR>
+
+" pick color scheme
+nnoremap <Leader>cs <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
+
+
+" >> setup nerdcomment key bindings
+let g:NERDCreateDefaultMappings = 0
+let g:NERDSpaceDelims = 1
+
+xnoremap <Leader>ci <cmd>call NERDComment('n', 'toggle')<CR>
+nnoremap <Leader>ci <cmd>call NERDComment('n', 'toggle')<CR>
+
+" >> setup NERDTree keybindings
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-" Autostart NERDTree
-" TODO: do this only in git directories
-" au VimEnter * NERDTree
-" Ignore paths in NERDTree
 let g:NERDTreeIgnore = ['^__pycache__$']
 
-" LSP config (the mappings used in the default file don't quite work right)
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+" >> Lsp key bindings
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K     <cmd>Lspsaga hover_doc<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-
-" auto-format
-autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
+nnoremap <silent> <C-p> <cmd>Lspsaga diagnostic_jump_prev<CR>
+nnoremap <silent> <C-n> <cmd>Lspsaga diagnostic_jump_next<CR>
+nnoremap <silent> gf    <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
+xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
+nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
 
 lua <<EOF
--- Initialize lsp-cmp for autocompletion
-local cmp = require'cmp'
-cmp.setup({
-    snippet = {
-      expand = function(args)
-     end,
-    },
-    mapping = {
-      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-e>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.close(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    },
-    sources = {
-      { name = 'nvim_lsp' },
-      { name = 'buffer' },
-    }
-  })
--- Initialize LSP servers
-require'lspconfig'.pyright.setup{}
-  -- Setup lspconfig.
---require'lspconfig'.pyright.setup {
---capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
---  }
+require("lsp")
+require("treesitter")
+require("statusbar")
+require("completion")
 EOF
-
