@@ -1,0 +1,5 @@
+lastfm-key = "08a982e9d48a6a2422edcb77e588cf11"
+lastfm-secret = "a86b77b0fd427d64db3c8f619933a705"
+enable-notifications = false
+min-play-time = 0 # in seconds
+filter-script = "/home/marekpiskorek/bin/rescrobbled_filter_script.sh"
