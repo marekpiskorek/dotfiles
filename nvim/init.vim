@@ -7,6 +7,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'kabouzeid/nvim-lspinstall'
     Plug 'glepnir/lspsaga.nvim'
     Plug 'hrsh7th/nvim-compe'
+    Plug 'hrsh7th/vim-vsnip'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
@@ -107,6 +108,10 @@ nnoremap <Leader>ci <cmd>call NERDComment('n', 'toggle')<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 let g:NERDTreeIgnore = ['^__pycache__$']
+
+" >> Lsp compe key bindings
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm({ 'keys': '<CR>', 'select': v:true })
 
 " >> Lsp key bindings
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
