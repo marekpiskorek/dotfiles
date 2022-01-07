@@ -1,10 +1,16 @@
 " >> load plugins
 call plug#begin(stdpath('data') . 'vimplug')
+    Plug 'mhinz/vim-startify'
+
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
+"     Plug 'ThePrimeagen/harpoon'
+
     Plug 'neovim/nvim-lspconfig'
-    Plug 'kabouzeid/nvim-lspinstall'
+    Plug 'williamboman/nvim-lsp-installer'
     Plug 'glepnir/lspsaga.nvim'
     Plug 'hrsh7th/nvim-compe'
     Plug 'hrsh7th/vim-vsnip'
@@ -15,15 +21,21 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'kyazdani42/nvim-web-devicons'  " needed for galaxyline icons
 
     Plug 'NLKNguyen/papercolor-theme'
+    Plug 'sainnhe/gruvbox-material'
     
     Plug 'f-person/git-blame.nvim'
     Plug 'airblade/vim-gitgutter'
 
     Plug 'preservim/NERDTree'
     Plug 'preservim/NERDCommenter'
+
+    Plug 'xolox/vim-misc'  " required for vim-notes
+    Plug 'xolox/vim-notes'
 call plug#end()
 
-colorscheme PaperColor
+set background=dark
+
+colorscheme gruvbox-material
 
 " basic settings
 syntax on
@@ -41,6 +53,7 @@ set mouse=
 set splitbelow  " more intuitive splits
 set splitright
 set clipboard=unnamedplus  " use system clipboard
+set switchbuf+=uselast  " use last used window for quickfix list
 
 if !&scrolloff
     set scrolloff=3
@@ -70,19 +83,11 @@ nnoremap <Leader>v :vsp $MYVIMRC<CR>
 nnoremap <Leader>sv :source $MYVIMRC<CR>
 
 " >> Telescope bindings
-nnoremap <Leader>pp <cmd>lua require'telescope.builtin'.builtin{}<CR>
-
 " most recently used files
 nnoremap <Leader>m <cmd>lua require'telescope.builtin'.oldfiles{}<CR>
 
-" find buffer
-nnoremap ; <cmd>lua require'telescope.builtin'.buffers{}<CR>
-
 " find in current buffer
 nnoremap <Leader>/ <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>
-
-" bookmarks
-nnoremap <Leader>' <cmd>lua require'telescope.builtin'.marks{}<CR>
 
 " git files
 nnoremap <Leader>f <cmd>lua require'telescope.builtin'.git_files{}<CR>
@@ -93,21 +98,17 @@ nnoremap <Leader>bfs <cmd>lua require'telescope.builtin'.find_files{}<CR>
 " ripgrep like grep through dir
 nnoremap <Leader>rg <cmd>lua require'telescope.builtin'.live_grep{}<CR>
 
-" pick color scheme
-nnoremap <Leader>cs <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
 
-
-" >> setup nerdcomment key bindings
-let g:NERDCreateDefaultMappings = 0
-let g:NERDSpaceDelims = 1
-
-xnoremap <Leader>ci <cmd>call NERDComment('n', 'toggle')<CR>
-nnoremap <Leader>ci <cmd>call NERDComment('n', 'toggle')<CR>
+" Startify settings
+let g:startify_session_dir = '~/.config/nvim/session'
+let g:startify_session_autoload = 1
+let g:startify_change_to_vcs_root = 1
 
 " >> setup NERDTree keybindings
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 let g:NERDTreeIgnore = ['^__pycache__$']
+let NERDTreeWinSize = 40
 
 " >> Lsp compe key bindings
 inoremap <silent><expr> <C-Space> compe#complete()
@@ -123,11 +124,23 @@ nnoremap <silent> K     <cmd>Lspsaga hover_doc<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-p> <cmd>Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent> <C-n> <cmd>Lspsaga diagnostic_jump_next<CR>
-nnoremap <silent> gf    <cmd>lua vim.lsp.buf.formatting()<CR>
+" nnoremap <silent> gf    <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
 xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
 nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
+
+" >> Harpoon config
+" For now this plugin is uninstalled, it breaks when working in regular
+" workdir
+" nnoremap <silent><leader>a :lua require("harpoon.mark").add_file()<CR>
+" nnoremap <silent><C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
+" nnoremap <silent><leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
+
+" nnoremap <silent><C-m> :lua require("harpoon.ui").nav_file(1)<CR>
+" nnoremap <silent><C-,> :lua require("harpoon.ui").nav_file(2)<CR>
+" nnoremap <silent><C-.> :lua require("harpoon.ui").nav_file(3)<CR>
+" nnoremap <silent><C-/> :lua require("harpoon.ui").nav_file(4)<CR>
 
 lua <<EOF
 require("lsp")

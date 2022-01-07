@@ -35,6 +35,10 @@ exec --no-startup-id picom -b
 # Set default wallpaper on startup
 exec --no-startup-id feh --randomize --recursive --bg-scale /home/marek/Wallpapers
 
+# set screen resolution correctly on startup
+exec --no-startup-id xrandr --output HDMI-2 --auto --mode 3840x2160 --dpi 120 --scale 1x1 --pos 3840x0
+exec --no-startup-id xrandr --output eDP-1 --off
+
 # Set polish keyboard (TODO: there should be a better way to handle this)
 exec --no-startup-id setxkbmap pl
 
@@ -52,7 +56,7 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 
 # start firefox
-bindsym $mod+Shift+Return exec firefox
+bindsym $mod+Shift+Return exec google-chrome
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -160,6 +164,9 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# suspend
+bindsym $mod+Shift+s exec "systemctl suspend"
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

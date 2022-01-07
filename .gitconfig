@@ -5,11 +5,11 @@
     br = branch
     solve = mergetools -t kiff3
     patch = !"git ci -am 'f' & git rebase HEAD~2"
-    reb = !"git co trunk && git pull && git co - && git rebase trunk"
+    reb = !"git co master && git pull && git co - && git rebase master"
 [user]
-	email = marek.piskorek@gmail.com
+	email = marek.piskorek@nextmatter.com
 	name = Marek Piskorek
 [push]
 	default = simple
 [core]
-    editor = ~/bin/appimages/nvim.appimage
+    editor = nvim.appimage
