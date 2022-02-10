@@ -441,6 +441,9 @@ set_from_resource $i3-wm.binding.notification_ui i3-wm.binding.notification_ui n
 set_from_resource $i3-wm.program.notification_ui i3-wm.program.notification_ui /usr/bin/rofication-gui
 bindsym $mod+$i3-wm.binding.notification_ui exec $i3-wm.program.notification_ui
 
+## Change wallpaper randomly // <><Shift> w ##
+bindsym $mod+Shift+w exec "feh --randomize --recursive --bg-scale /home/marek/Pictures/Wallpapers"
+
 ###############################################################################
 # Workspace Management
 ###############################################################################

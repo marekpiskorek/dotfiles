@@ -7,7 +7,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
-"     Plug 'ThePrimeagen/harpoon'
+    Plug 'ThePrimeagen/harpoon'
 
     Plug 'neovim/nvim-lspconfig'
     Plug 'williamboman/nvim-lsp-installer'
@@ -31,6 +31,9 @@ call plug#begin(stdpath('data') . 'vimplug')
 
     Plug 'xolox/vim-misc'  " required for vim-notes
     Plug 'xolox/vim-notes'
+
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 set background=dark
@@ -54,6 +57,7 @@ set splitbelow  " more intuitive splits
 set splitright
 set clipboard=unnamedplus  " use system clipboard
 set switchbuf+=uselast  " use last used window for quickfix list
+set updatetime=100
 
 if !&scrolloff
     set scrolloff=3
@@ -121,7 +125,8 @@ nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> K     <cmd>Lspsaga hover_doc<CR>
-nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" Commented out - conflicts with "go to split above"
+" nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-p> <cmd>Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent> <C-n> <cmd>Lspsaga diagnostic_jump_next<CR>
 " nnoremap <silent> gf    <cmd>lua vim.lsp.buf.formatting()<CR>
@@ -131,20 +136,21 @@ xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
 nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
 
 " >> Harpoon config
-" For now this plugin is uninstalled, it breaks when working in regular
-" workdir
-" nnoremap <silent><leader>a :lua require("harpoon.mark").add_file()<CR>
-" nnoremap <silent><C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
-" nnoremap <silent><leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
+nnoremap <silent><leader>a :lua require("harpoon.mark").add_file()<CR>
+nnoremap <silent><C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
+nnoremap <silent><leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
 
-" nnoremap <silent><C-m> :lua require("harpoon.ui").nav_file(1)<CR>
-" nnoremap <silent><C-,> :lua require("harpoon.ui").nav_file(2)<CR>
-" nnoremap <silent><C-.> :lua require("harpoon.ui").nav_file(3)<CR>
-" nnoremap <silent><C-/> :lua require("harpoon.ui").nav_file(4)<CR>
+nnoremap <silent><leader>1 :lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <silent><leader>2 :lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <silent><leader>3 :lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <silent><leader>4 :lua require("harpoon.ui").nav_file(4)<CR>
+
+" >> Airline settings
+let g:airline_powerline_fonts = 1
 
 lua <<EOF
 require("lsp")
 require("treesitter")
-require("statusbar")
 require("completion")
 EOF
+" require("statusbar") - removed in favor of airline

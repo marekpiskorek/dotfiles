@@ -33,7 +33,7 @@ exec --no-startup-id nm-applet
 # Start the composition manager - picom
 exec --no-startup-id picom -b
 # Set default wallpaper on startup
-exec --no-startup-id feh --randomize --recursive --bg-scale /home/marek/Wallpapers
+exec --no-startup-id feh --randomize --recursive --bg-scale /home/marek/Pictures/Wallpapers
 
 # set screen resolution correctly on startup
 exec --no-startup-id xrandr --output HDMI-2 --auto --mode 3840x2160 --dpi 120 --scale 1x1 --pos 3840x0
@@ -106,8 +106,7 @@ bindsym $mod+f fullscreen toggle
 # bindsym $mod+e layout toggle split
 
 # Change wallpaper randomly
-
-bindsym $mod+w exec "feh --randomize --recursive --bg-scale /home/marek/Wallpapers"
+bindsym $mod+Shift+w exec "feh --randomize --recursive --bg-scale /home/marek/Pictures/Wallpapers"
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
