@@ -77,7 +77,7 @@ ZSH_TMUX_CONFIG=~/.config/tmux/tmux.conf
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf vi-mode tmux zsh-syntax-highlighting)
+plugins=(git fzf vi-mode tmux zsh-fzf-history-search zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -121,6 +121,5 @@ alias v=/usr/bin/nvim
 alias g=git
 alias ls="lsd -lah"
 
-export PATH=~/.npm-global/bin:~/bin/:~/.local/bin/:~/.cargo/bin:$PATH
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Add the juicy stuff to PATH: npm, cargo, go bins and my custom bin path
+export PATH=~/.npm-global/bin:~/.local/bin/:~/.cargo/bin:~/go/bin:~/bin/:$PATH
