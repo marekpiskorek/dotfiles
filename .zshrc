@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/${USER}/.local/bin/oh-my-zsh"
+export ZSH="/home/${USER}/bin/oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -70,6 +70,8 @@ VI_MODE_SET_CURSOR=true
 
 ZSH_TMUX_AUTOSTART=true
 
+ZSH_TMUX_CONFIG=~/.config/tmux/tmux.conf
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -118,8 +120,7 @@ bindkey -s '^o' 'lfcd\n'
 alias v=/usr/bin/nvim
 alias g=git
 alias ls="lsd -lah"
-alias run-codility="~/workspace/codility/run django:port=8001 backend-worker webpack-dev-server task-server checker docker_server"
 
-export PATH=$PATH:/home/marekpiskorek/workspace/devel-tools/aws-sso/bin
+export PATH=~/.npm-global/bin:~/bin/:~/.local/bin/:~/.cargo/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

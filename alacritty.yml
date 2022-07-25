@@ -1,6 +1,19 @@
+#########################################
+##               GENERAL               ##
+#########################################
 env:
   TERM:
     xterm-256color
+
+shell:
+  program: /bin/zsh
+  args:
+    - --login
+
+window:
+  opacity: 0.8
+  startup_mode: Fullscreen
+
 #######################################
 ##               FONTS               ##
 #######################################
@@ -18,7 +31,6 @@ font:
     family: iosevka
     style: Bold Italic
   size: 20.0
-background_opacity: 0.8
 
 #######################################
 ##           COLOR SCHEMES           ##
