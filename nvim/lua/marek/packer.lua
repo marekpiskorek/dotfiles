@@ -38,4 +38,15 @@ return require('packer').startup(function()
 
     -- Harpoon for jumping between files
     use 'ThePrimeagen/harpoon'
+
+    -- NvimTree
+    use {
+      'kyazdani42/nvim-tree.lua',
+      requires = {
+        'kyazdani42/nvim-web-devicons', -- for file icons
+      },
+    }
+
+    -- LSP pictograms helping identify the source of autocompletion
+    use 'onsails/lspkind-nvim'
 end)
