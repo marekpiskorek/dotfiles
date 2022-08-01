@@ -13,7 +13,6 @@ vim.opt.mouse = "a" -- allow the mouse to be used in neovim
 vim.opt.number = true -- set numbered lines
 vim.opt.numberwidth = 4 -- set number column width to 2 {default 4}
 vim.opt.pumheight = 10 -- pop up menu height
-vim.opt.relativenumber = false -- set relative numbered lines
 vim.opt.relativenumber = true -- set relative numbered lines
 vim.opt.scrolloff = 8 -- offset for smoother scrolling
 vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
@@ -35,5 +34,6 @@ vim.opt.undofile = true -- enable persistent undo
 vim.opt.updatetime = 300 -- faster completion
 vim.opt.wrap = true -- wrap them lines
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
+vim.opt.timeoutlen = 2000 -- allow for longer timeout after pressing leader key
 
 vim.g.mapleader = " " -- space is the leader now
