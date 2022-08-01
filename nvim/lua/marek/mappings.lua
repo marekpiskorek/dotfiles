@@ -8,3 +8,6 @@ nnoremap('<C-l>', '<cmd>wincmd l<CR>')
 
 -- This unsets the "last search pattern" register by hitting return
 nnoremap('<CR>', '<cmd>noh<CR><CR>')
+
+-- https://neovim.discourse.group/t/reload-init-lua-and-all-require-d-scripts/971/11
+nnoremap('<leader>sv', "<cmd>lua ReloadConfig()<CR>")

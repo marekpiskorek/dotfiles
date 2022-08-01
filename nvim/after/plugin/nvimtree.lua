@@ -1,8 +1,10 @@
+local nnoremap = require("marek.keymap").nnoremap
+
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
     side = "left",
-    width = 50,
+    width = 70,
   },
   renderer = {
     group_empty = true,
@@ -12,3 +14,5 @@ require("nvim-tree").setup({
     custom = { "^.git$" },
   },
 })
+
+nnoremap("<leader>e", ":NvimTreeFindFile<CR>")

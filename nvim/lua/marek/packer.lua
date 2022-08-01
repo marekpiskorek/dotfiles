@@ -17,6 +17,7 @@ return require('packer').startup(function()
     use 'glepnir/lspsaga.nvim'
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
+    use 'L3MON4D3/LuaSnip'
 
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -49,4 +50,13 @@ return require('packer').startup(function()
 
     -- LSP pictograms helping identify the source of autocompletion
     use 'onsails/lspkind-nvim'
+
+    -- Trouble
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+        require("trouble").setup {}
+      end
+    }
 end)
