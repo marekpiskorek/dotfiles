@@ -1,5 +1,3 @@
-local nnoremap = require("marek.keymap").nnoremap
-
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
@@ -15,4 +13,4 @@ require("nvim-tree").setup({
   },
 })
 
-nnoremap("<leader>e", ":NvimTreeFindFile<CR>")
+vim.keymap.set("n", "<leader>e", ":NvimTreeFindFile<CR>")

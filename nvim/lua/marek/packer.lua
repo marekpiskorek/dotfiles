@@ -20,7 +20,7 @@ return require('packer').startup(function()
     use 'L3MON4D3/LuaSnip'
 
     -- Treesitter
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-treesitter/nvim-treesitter-textobjects'
 
     -- Git stuff
@@ -34,18 +34,15 @@ return require('packer').startup(function()
     -- Notification manager
     use 'rcarriga/nvim-notify'
 
-    -- Display popup with autocompletion for typed command
-    use 'folke/which-key.nvim'
-
     -- Harpoon for jumping between files
     use 'ThePrimeagen/harpoon'
 
     -- NvimTree
     use {
-      'kyazdani42/nvim-tree.lua',
-      requires = {
-        'kyazdani42/nvim-web-devicons', -- for file icons
-      },
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+            'kyazdani42/nvim-web-devicons', -- for file icons
+        },
     }
 
     -- LSP pictograms helping identify the source of autocompletion
@@ -53,10 +50,22 @@ return require('packer').startup(function()
 
     -- Trouble
     use {
-      "folke/trouble.nvim",
-      requires = "kyazdani42/nvim-web-devicons",
-      config = function()
-        require("trouble").setup {}
-      end
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("trouble").setup {}
+        end
     }
+
+    -- Whichkey - shows suggestions for leader key followup
+    use "max397574/which-key.nvim"
+
+    -- Auto pair keys - auto close brackets etc.
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
+
+    use "lukas-reineke/lsp-format.nvim"
+
 end)

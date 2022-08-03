@@ -34,6 +34,6 @@ vim.opt.undofile = true -- enable persistent undo
 vim.opt.updatetime = 300 -- faster completion
 vim.opt.wrap = true -- wrap them lines
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
-vim.opt.timeoutlen = 2000 -- allow for longer timeout after pressing leader key
+vim.opt.timeoutlen = 500 -- allow for longer timeout after pressing leader key
 
 vim.g.mapleader = " " -- space is the leader now
