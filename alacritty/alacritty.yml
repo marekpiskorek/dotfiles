@@ -30,7 +30,7 @@ font:
   bold_italic:
     family: iosevka
     style: Bold Italic
-  size: 20.0
+  size: 15.0
 
 #######################################
 ##           COLOR SCHEMES           ##

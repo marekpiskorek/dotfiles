@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/${USER}/bin/oh-my-zsh"
+export ZSH="/Users/${USER}/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -117,9 +117,12 @@ bindkey -s '^o' 'lfcd\n'
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias v=/usr/bin/nvim
+alias v=nvim
 alias g=git
 alias ls="lsd -lah"
+function agr { ag -0 -l --no-color "$1" | AGR_FROM="$1" AGR_TO="$2" xargs -r0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g'; }
+export -f arg
 
 # Add the juicy stuff to PATH: npm, cargo, go bins and my custom bin path
 export PATH=~/.npm-global/bin:~/.local/bin/:~/.cargo/bin:~/go/bin:~/bin/:$PATH
+eval "$(direnv hook zsh)"

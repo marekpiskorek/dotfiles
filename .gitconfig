@@ -11,17 +11,22 @@
     reb = !"git co master && git pull && git co - && git rebase master"
 
 [user]
-	email = marek.piskorek@pm.me
+	email = marek.piskorek@samsara.com
 	name = Marek Piskorek
 
 [push]
 	default = simple
 
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [delta]
-    navigate = true  # use n and N to move between diff sections
+	navigate = true  # use n and N to move between diff sections
 
 [diff]
-    colorMoved = default
+	colorMoved = default
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

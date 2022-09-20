@@ -24,7 +24,7 @@ return require('packer').startup(function()
     use 'nvim-treesitter/nvim-treesitter-textobjects'
 
     -- Git stuff
-    use 'f-person/git-blame.nvim'
+    -- use 'f-person/git-blame.nvim' -- this looks fancy but provides zero useful info and on macos fogs the nvimtree / harpoon
     use 'airblade/vim-gitgutter'
 
     -- Vim airline for status line
