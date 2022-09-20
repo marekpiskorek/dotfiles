@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/${USER}/.oh-my-zsh"
+export ZSH="/home/ubuntu/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -77,7 +77,7 @@ ZSH_TMUX_CONFIG=~/.config/tmux/tmux.conf
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf vi-mode tmux zsh-fzf-history-search zsh-syntax-highlighting)
+plugins=(git fzf vi-mode zsh-fzf-history-search zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -120,9 +120,14 @@ bindkey -s '^o' 'lfcd\n'
 alias v=nvim
 alias g=git
 alias ls="lsd -lah"
+
 function agr { ag -0 -l --no-color "$1" | AGR_FROM="$1" AGR_TO="$2" xargs -r0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g'; }
-export -f arg
+export -f agr
 
 # Add the juicy stuff to PATH: npm, cargo, go bins and my custom bin path
 export PATH=~/.npm-global/bin:~/.local/bin/:~/.cargo/bin:~/go/bin:~/bin/:$PATH
 eval "$(direnv hook zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
