@@ -38,3 +38,6 @@ vim.opt.writebackup = false -- if a file is being edited by another program (or 
 vim.opt.timeoutlen = 500 -- allow for longer timeout after pressing leader key
 
 vim.g.mapleader = " " -- space is the leader now
+
+vim.g.gitblame_date_format = '%r'
+

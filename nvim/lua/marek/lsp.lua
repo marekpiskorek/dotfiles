@@ -3,64 +3,51 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 
 cmp.setup({
-    snippet = {
-        expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert({
-        ["<TAB>"] = cmp.mapping.confirm({ select = true }),
-        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-d>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
-    }),
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<TAB>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+  }),
 
-    formatting = {
-        format = function(entry, vim_item)
-            vim_item.kind = lspkind.presets.default[vim_item.kind]
-            return vim_item
-        end,
-    },
-    sources = {
-        { name = "nvim_lsp" },
-    }
+  formatting = {
+    format = function(_, vim_item)
+      vim_item.kind = lspkind.presets.default[vim_item.kind]
+      return vim_item
+    end,
+  },
+  sources = {
+    { name = "nvim_lsp" },
+  }
 })
 
-local function config(_config)
-    return vim.tbl_deep_extend("force", {
-        capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-        on_attach = function()
-            vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end)
-            vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
-            vim.keymap.set("n", "<Leader>vws", function() vim.lsp.buf.workspace_symbol() end)
-            vim.keymap.set("n", "<Leader>vd", function() vim.diagnostic.open_float() end)
-            vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end)
-            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end)
-            vim.keymap.set("n", "<Leader>vca", function() vim.lsp.buf.code_action() end)
-            vim.keymap.set("n", "<Leader>vrr", function() vim.lsp.buf.references() end) -- this needs an easier keybinding as together with gd is going to be the most common one.
-            vim.keymap.set("n", "<Leader>vrn", function() vim.lsp.buf.rename() end)
-            vim.keymap.set("n", "H", function() vim.lsp.buf.signature_help() end)
-        end,
-    }, _config or {})
-end
-
 -- Setup the language servers
-require("lspconfig").tsserver.setup(config())
-require("lspconfig").dockerls.setup(config())
-require("lspconfig").gopls.setup(config({
-    cmd = { "gopls", "serve" },
-    settings = {
-        gopls = {
-            analyses = {
-                unusedparams = true,
-            },
-            staticcheck = true,
-        },
+require("lspconfig").tsserver.setup({})
+require("lspconfig").dockerls.setup({})
+require("lspconfig").html.setup({})
+require("lspconfig").jsonls.setup({})
+require("lspconfig").pyright.setup({})
+require("lspconfig").rust_analyzer.setup({})
+require("lspconfig").sqls.setup({})
+require("lspconfig").sumneko_lua.setup({})
+
+
+-- This snippet is copied from Bernardo's dotfiles.
+require("lspconfig").gopls.setup({
+  cmd = { "gopls", "serve" },
+  filetypes = { "go", "gomod" },
+  settings = {
+    gopls = {
+      ["local"] = "samsaradev.io",
+      experimentalWorkspaceModule = true,
+      experimentalUseInvalidMetadata = true,
+      usePlaceholders = true,
+      memoryMode = "DegradeClosed",
     },
-}))
-require("lspconfig").html.setup(config())
-require("lspconfig").jsonls.setup(config())
-require("lspconfig").pyright.setup(config())
-require("lspconfig").rust_analyzer.setup(config())
-require("lspconfig").sqls.setup(config())
-require("lspconfig").sumneko_lua.setup(config())
+  },
+})
