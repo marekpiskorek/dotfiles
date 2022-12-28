@@ -13,4 +13,4 @@ require("nvim-tree").setup({
     },
 })
 
-vim.keymap.set("n", "<leader>e", ":NvimTreeFindFile<CR>")
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFindFile<CR>")

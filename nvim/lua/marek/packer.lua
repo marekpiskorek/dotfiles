@@ -4,6 +4,10 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- Some colorschemes
+  use "folke/tokyonight.nvim"
+  use "morhetz/gruvbox"
+
   -- Telescope and its dependencies
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/popup.nvim'
@@ -21,6 +25,7 @@ return require('packer').startup(function(use)
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'L3MON4D3/LuaSnip'
+  use 'onsails/lspkind-nvim'
 
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -58,9 +63,6 @@ return require('packer').startup(function(use)
     },
   }
 
-  -- LSP pictograms helping identify the source of autocompletion
-  use 'onsails/lspkind-nvim'
-
   -- Whichkey - shows suggestions for leader key followup
   use "max397574/which-key.nvim"
 
@@ -69,9 +71,6 @@ return require('packer').startup(function(use)
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   }
-
-  -- New colorscheme for us
-  use "folke/tokyonight.nvim"
 
   -- OSCYank for cross-ssh yanking
   use "ojroques/vim-oscyank"
