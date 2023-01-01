@@ -24,4 +24,5 @@ vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
 vim.keymap.set("n", "<Leader>vrn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 vim.keymap.set("n", "H", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 
-vim.keymap.set("", "<Leader>y", "<ESC><cmd>OSCYank<CR>") -- no one knows why the initial ESC is required but this doesn't work without it ¯\_(ツ)_/¯
+vim.keymap.set("", "<Leader>y", "<ESC><cmd>OSCYank<CR>") -- initial ESC is required to move from visual back to normal mode
+vim.keymap.set("n", "<Space><Space>", "<cmd>Telescope resume<CR>") -- reopen last Telescope
