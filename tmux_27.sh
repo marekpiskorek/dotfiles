@@ -2,15 +2,13 @@
 
 tmux new-session -s work -n neovim \; \
 	send-keys 'cd co/backend' C-m \; \
-	send-keys 'v' C-m \; \
-  split-window -h \; \
-  resize-pane -R 50 \; \
+  send-keys 'v' C-m \; \
+  split-window -v \; \
   send-keys 'cd co/backend/go/src/samsaradev.io/' C-m \; \
 	send-keys 'export EXPERIMENTAL\_TASKRUNNER\_NEWTUI=0' C-m \; \
-	new-window -n meta \; \
-	send-keys 'cd .config/nvim && v' C-m \; \
-  send-keys 'cd co/backend' C-m \; \
-  send-keys 'v' C-m \; \
+  resize-pane -D 20 \; \
+	new-window -n notes \; \
+	send-keys 'cd .config/nvim && v tmux_27.sh'  C-m \; \
   split-window -h \; \
   send-keys 'v notes/notes.md "+normal G"' C-m \; \
 	select-window -t 1 \; \

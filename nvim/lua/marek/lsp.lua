@@ -36,6 +36,8 @@ require("lspconfig").pyright.setup({})
 require("lspconfig").rust_analyzer.setup({})
 require("lspconfig").sqls.setup({})
 require("lspconfig").sumneko_lua.setup({})
+require("lspconfig").terraformls.setup {}
+require("lspconfig").tflint.setup {}
 
 
 -- This snippet is copied from Bernardo's dotfiles.

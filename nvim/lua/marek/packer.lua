@@ -7,6 +7,9 @@ return require('packer').startup(function(use)
   -- Some colorschemes
   use "folke/tokyonight.nvim"
   use "morhetz/gruvbox"
+  use "EdenEast/nightfox.nvim"
+  use { "catppuccin/nvim", as = "catppuccin" }
+  use "rebelot/kanagawa.nvim"
 
   -- Telescope and its dependencies
   use 'nvim-lua/plenary.nvim'
@@ -26,20 +29,22 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp'
   use 'L3MON4D3/LuaSnip'
   use 'onsails/lspkind-nvim'
+  use "lukas-reineke/lsp-format.nvim"
 
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/nvim-treesitter-refactor'
 
-  -- Navigator - should be able to replace Trouble and some LSP settings.
-  use({
-    'ray-x/navigator.lua',
-    requires = {
-      { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
-      { 'neovim/nvim-lspconfig' },
-    },
-  })
+  -- Trouble
+
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {}
+    end
+  }
 
   -- Git stuff
   use 'airblade/vim-gitgutter'
@@ -75,5 +80,11 @@ return require('packer').startup(function(use)
   -- OSCYank for cross-ssh yanking
   use "ojroques/vim-oscyank"
 
-  use "lukas-reineke/lsp-format.nvim"
+  -- Zen mode - might be useful
+  use "folke/zen-mode.nvim"
+
+  use "RRethy/vim-illuminate"
+
+  -- Terraform support
+  use 'hashivim/vim-terraform'
 end)
