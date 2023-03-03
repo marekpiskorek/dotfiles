@@ -83,8 +83,17 @@ return require('packer').startup(function(use)
   -- Zen mode - might be useful
   use "folke/zen-mode.nvim"
 
-  use "RRethy/vim-illuminate"
+  -- Auto highlight the word's other occurrences - commented out because of TS errors
+  -- use "RRethy/vim-illuminate"
 
   -- Terraform support
   use 'hashivim/vim-terraform'
+
+  -- Simple commenting
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
 end)
