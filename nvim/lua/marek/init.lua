@@ -1,5 +1,5 @@
 require("marek.set")
-require("marek.packer")
+require("marek.lazy")
 require("marek.lsp")
 require("marek.mappings")
 require("marek.reload")

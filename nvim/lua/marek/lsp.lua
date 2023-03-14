@@ -1,6 +1,5 @@
 -- Setup nvim-cmp.
 local cmp = require("cmp")
-local lspkind = require("lspkind")
 
 cmp.setup({
   snippet = {
@@ -15,16 +14,6 @@ cmp.setup({
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
   }),
-
-  formatting = {
-    format = function(_, vim_item)
-      vim_item.kind = lspkind.presets.default[vim_item.kind]
-      return vim_item
-    end,
-  },
-  sources = {
-    { name = "nvim_lsp" },
-  }
 })
 
 -- Setup the language servers
@@ -47,8 +36,6 @@ require("lspconfig").gopls.setup({
   settings = {
     gopls = {
       ["local"] = "samsaradev.io",
-      experimentalWorkspaceModule = true,
-      experimentalUseInvalidMetadata = true,
       usePlaceholders = true,
       memoryMode = "DegradeClosed",
     },
