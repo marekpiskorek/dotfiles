@@ -96,4 +96,17 @@ return require('packer').startup(function(use)
       require('Comment').setup()
     end
   }
+
+  -- EditorConfig - useful only until nvim0.9
+  use 'gpanders/editorconfig.nvim'
+
+  -- FZF - sometimes telescope is just too slow.
+  use 'junegunn/fzf'
+  use 'junegunn/fzf.vim'
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
+  -- Vim Fugitive, for integration with FZF
+  use 'tpope/vim-fugitive'
+
+  --
 end)
