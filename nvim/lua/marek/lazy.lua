@@ -1,3 +1,4 @@
+-- Initialize Lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -52,7 +53,7 @@ require("lazy").setup({
       return vim.fn.executable 'make' == 1
     end,
   },
-  --
+
   -- Treesitter
     { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -63,20 +64,20 @@ require("lazy").setup({
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   },
-  --
+
   -- Git stuff
   'airblade/vim-gitgutter',
-  { "ruifm/gitlinker.nvim", requires = "nvim-lua/plenary.nvim" }, -- get github link to given code
+  { "ruifm/gitlinker.nvim", dependencies = {"nvim-lua/plenary.nvim" }}, -- get github link to given code
   "f-person/git-blame.nvim", -- git blame inline
 
   -- Lualine for status line
-  { "nvim-lualine/lualine.nvim", requires = "kyazdani42/nvim-web-devicons" },
+  { "nvim-lualine/lualine.nvim", dependencies = {"kyazdani42/nvim-web-devicons"} },
 
   -- Harpoon for jumping between files
   "ThePrimeagen/harpoon",
 
   -- NvimTree
-  { "kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons" },
+  { "kyazdani42/nvim-tree.lua", dependencies = {"kyazdani42/nvim-web-devicons"} },
 
   -- Whichkey - shows suggestions for leader key followup
   "max397574/which-key.nvim",

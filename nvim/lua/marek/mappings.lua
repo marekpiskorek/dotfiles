@@ -28,6 +28,9 @@ vim.keymap.set("n", "H", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 vim.keymap.set("v", "<Leader>y", "<cmd>OSCYankVisual<CR>") -- initial ESC is required to move from visual back to normal mode
 vim.keymap.set("n", "<Space><Space>", "<cmd>Telescope resume<CR>") -- reopen last Telescope
 
+-- format file
+vim.keymap.set("n", "<C-F>", "<cmd>lua vim.lsp.buf.format()<CR>")
+
 -- FZF replacing Telescope mappings.
 -- vim.keymap.set("n", "<Leader>f", "<cmd>:Files<CR>")
 -- vim.keymap.set("n", "<Leader>rg", "<cmd>:Ag<CR>")
