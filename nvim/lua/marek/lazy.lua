@@ -38,6 +38,8 @@ require("lazy").setup({
 
   -- colorschemes
   "rebelot/kanagawa.nvim",
+  { "catppuccin/nvim", name = "catppuccin" },
+  { 'dasupradyumna/midnight.nvim', lazy = false, priority = 1000 },
 
   -- Telescope and its dependencies
   {
@@ -103,4 +105,17 @@ require("lazy").setup({
 
   -- Vim Fugitive, for integration with FZF
   "tpope/vim-fugitive",
+
+  -- Handle Github PRs and issues from Nvim :D
+  {
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function ()
+      require"octo".setup()
+    end
+  }
 })

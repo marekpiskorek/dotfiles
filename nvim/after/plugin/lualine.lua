@@ -2,7 +2,8 @@ require("lualine").setup {
   options = { disabled_filetypes = { statusline = { "packer", "NvimTree" } } },
   sections = {
     lualine_b = {
-      { 'branch' }, { 'diff' }, { 'diagnostics' }
+      -- { 'branch' }, { 'diff' }, { 'diagnostics' }
+      { 'diff' }, { 'diagnostics' }
     },
     lualine_c = { {
       'filename',

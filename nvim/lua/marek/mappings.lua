@@ -26,10 +26,12 @@ vim.keymap.set("n", "<Leader>vrn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 vim.keymap.set("n", "H", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 
 vim.keymap.set("v", "<Leader>y", "<cmd>OSCYankVisual<CR>") -- initial ESC is required to move from visual back to normal mode
-vim.keymap.set("n", "<Space><Space>", "<cmd>Telescope resume<CR>") -- reopen last Telescope
+vim.keymap.set("n", "<Space>rr", "<cmd>Telescope resume<CR>") -- reopen last Telescope
 
 -- format file
 vim.keymap.set("n", "<C-F>", "<cmd>lua vim.lsp.buf.format()<CR>")
+
+-- vim.keymap.set('n', '<Leader>rg', function () require 'telescope_setup'.live_grep_in_glob {} end)
 
 -- FZF replacing Telescope mappings.
 -- vim.keymap.set("n", "<Leader>f", "<cmd>:Files<CR>")
