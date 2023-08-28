@@ -66,6 +66,8 @@ require("lazy").setup({
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   },
+  -- add context info for super long functions / classes / whatever.
+  'nvim-treesitter/nvim-treesitter-context',
 
   -- Git stuff
   'airblade/vim-gitgutter',
@@ -88,7 +90,7 @@ require("lazy").setup({
   { "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup {} end },
 
   -- OSCYank for cross-ssh yanking
-  "ojroques/vim-oscyank",
+  "ojroques/nvim-osc52",
 
   -- Auto highlight the word's other occurrences - commented out because of TS errors
   -- use "RRethy/vim-illuminate"
@@ -106,16 +108,22 @@ require("lazy").setup({
   -- Vim Fugitive, for integration with FZF
   "tpope/vim-fugitive",
 
-  -- Handle Github PRs and issues from Nvim :D
-  {
-    'pwntester/octo.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function ()
-      require"octo".setup()
-    end
-  }
+  -- Handle Github PRs and issues from Nvim - not going to use for now, let's not be autistic
+  -- {
+  --   'pwntester/octo.nvim',
+  --   requires = {
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-telescope/telescope.nvim',
+  --     'nvim-tree/nvim-web-devicons',
+  --   },
+  --   config = function ()
+  --     require"octo".setup()
+  --   end
+  -- },
+
+  -- Move smoothly between Nvim and Tmux panes
+  "christoomey/vim-tmux-navigator",
+
+  -- Copilot
+  "github/copilot.vim"
 })

@@ -11,8 +11,8 @@ local servers = {
   gopls = {
     gopls = {
       ["local"] = "samsaradev.io",
-      usePlaceholders = true,
-      memoryMode = "DegradeClosed",
+      -- usePlaceholders = true,
+      -- memoryMode = "DegradeClosed",
     },
   },
   lua_ls = {
@@ -43,7 +43,7 @@ mason_lspconfig.setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
-      on_attach = on_attach,
+      -- on_attach = on_attach,
       settings = servers[server_name],
     }
   end,
@@ -69,7 +69,7 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<C-j>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
@@ -78,7 +78,7 @@ cmp.setup {
         fallback()
       end
     end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    ['<C-k>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -93,3 +93,11 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+local function on_list(options)
+  vim.fn.setqflist({}, ' ', options)
+  vim.api.nvim_command('cfirst')
+end
+
+vim.lsp.buf.definition{on_list=on_list}
+vim.lsp.buf.references(nil, {on_list=on_list})
