@@ -10,8 +10,9 @@ shell:
   args:
     - --login
 
+tabspaces: 2
 window:
-  opacity: 0.8
+  # opacity: 0.8
   startup_mode: Fullscreen
 
 #######################################
@@ -19,22 +20,20 @@ window:
 #######################################
 font:
   normal:
-    family: iosevka
+    family: iosevka Nerd Font
+    #family: Mononoki Nerd Font
     style: Regular
-  bold:
-    family: iosevka
-    style: Bold
-  italic:
-    family: iosevka
-    style: Italic
-  bold_italic:
-    family: iosevka
-    style: Bold Italic
-  size: 15.0
+  size: 20.0
+
+#######################################
+##           KEY BINDINGS            ##
+#######################################
+key_bindings:
+  - { key: Q, mods: Control, chars: "\x11" }
 
 #######################################
 ##           COLOR SCHEMES           ##
-#######################################
+######################################
 schemes:
   ### Gruvbox dark ###
   gruvbox-dark: &gruvbox-dark

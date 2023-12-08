@@ -9,4 +9,4 @@ require "lspconfig".gopls.setup { on_attach = on_attach }
 require "lspconfig".html.setup { on_attach = on_attach }
 require "lspconfig".jsonls.setup { on_attach = on_attach }
 require "lspconfig".sqls.setup { on_attach = on_attach }
-require "lspconfig".lua_ls.setup { on_attach = on_attach }
+require "lspconfig".lua_language_server.setup { on_attach = on_attach }
