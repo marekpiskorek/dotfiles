@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/ubuntu/.oh-my-zsh"
+export ZSH="/home/marek/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -120,21 +120,12 @@ bindkey -s '^o' 'lfcd\n'
 alias v=nvim
 alias g=git
 alias ls="lsd -lah"
+alias cat=bat
 
 # Custom function for find and replace with ag. Needs to be defined in another way as export does not handle this correctly.
 # function agr { ag -0 -l --no-color "$1" | AGR_FROM="$1" AGR_TO="$2" xargs -r0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g'; }
 # export -f agr
 
 # Add the juicy stuff to PATH: npm, cargo, go bins and my custom bin path
-export PATH=~/.npm-global/bin:~/.local/bin/:~/.cargo/bin:~/go/bin:~/bin/:$PATH
+export PATH=~/.npm-global/bin:~/.local/bin/:~/.cargo/bin:~/bin/go/bin:~/bin/:~/go/bin/:~/codes/scripts/:$PATH
 eval "$(direnv hook zsh)"
-
-# Add autocompletion to taskrunner
-autoload bashcompinit
-bashcompinit
-if [ -f $HOME/co/backend/bin/taskrunner-completion.bash ]; then
-  . $HOME/co/backend/bin/taskrunner-completion.bash
-fi
-
-# Add a useful alias for taskrunner task fuzzy search - broken for now
-alias trls='taskrunner \`taskrunner --describe \| fzf\`'

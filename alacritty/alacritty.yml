@@ -19,16 +19,16 @@ window:
 #######################################
 font:
   normal:
-    family: iosevka
+    family: Iosevka nerd font
     style: Regular
   bold:
-    family: iosevka
+    family: Iosevka nerd font
     style: Bold
   italic:
-    family: iosevka
+    family: Iosevka nerd font
     style: Italic
   bold_italic:
-    family: iosevka
+    family: Iosevka nerd font
     style: Bold Italic
   size: 15.0
 

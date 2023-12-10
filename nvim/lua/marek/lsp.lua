@@ -4,15 +4,14 @@ local servers = {
   html = {},
   jsonls = {},
   pyright = {},
-  rust_analyzer = {},
-  sqls = {},
+  sqlls = {},
   terraformls = {},
   tflint = {},
   gopls = {
     gopls = {
-      ["local"] = "samsaradev.io",
-      -- usePlaceholders = true,
-      -- memoryMode = "DegradeClosed",
+      -- ["local"] = "samsaradev.io",
+      usePlaceholders = true,
+      memoryMode = "DegradeClosed",
     },
   },
   lua_ls = {
