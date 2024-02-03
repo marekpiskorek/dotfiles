@@ -127,5 +127,5 @@ alias cat=bat
 # export -f agr
 
 # Add the juicy stuff to PATH: npm, cargo, go bins and my custom bin path
-export PATH=~/.npm-global/bin:~/.local/bin/:~/.cargo/bin:~/bin/go/bin:~/bin/:~/go/bin/:~/codes/scripts/:$PATH
+export PATH=~/.npm-global/bin:~/.local/bin/:~/.cargo/bin:~/bin/go/bin:~/bin/:~/go/bin/:~/codes/dotfiles/bin/:$PATH
 eval "$(direnv hook zsh)"

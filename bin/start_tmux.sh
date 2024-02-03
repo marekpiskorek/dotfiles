@@ -1,4 +1,7 @@
 #! /bin/bash
+# Should be only used as a reference on how to initialize Tmux
+# As I don't believe Samsara's environment variables will be useful
+# ever again for me.
 
 tmux new-session -s work -n neovim \; \
 	send-keys 'cd co/backend' C-m \; \

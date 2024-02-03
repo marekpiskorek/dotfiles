@@ -13,7 +13,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  { -- LSP Configuration & Plugins
+  {
+    -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
@@ -26,24 +27,41 @@ require("lazy").setup({
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
-
-      'jose-elias-alvarez/null-ls.nvim'
     },
   },
 
-  { -- Autocompletion
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local null_ls = require("null-ls")
+
+      null_ls.setup({
+        sources = {
+          -- null_ls.builtins.diagnostics.ruff,
+          null_ls.builtins.formatting.black,
+        }
+      })
+    end
+  },
+
+  {
+    -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   },
 
   -- colorschemes
   "rebelot/kanagawa.nvim",
-  { "catppuccin/nvim", name = "catppuccin" },
-  { 'dasupradyumna/midnight.nvim', lazy = false, priority = 1000 },
+  { "catppuccin/nvim",             name = "catppuccin" },
+  { "dasupradyumna/midnight.nvim", lazy = false,       priority = 1000 },
+  { 'maxmx03/solarized.nvim',      lazy = false,       priority = 1000 },
 
   -- Telescope and its dependencies
   {
-    'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-live-grep-args.nvim' },
+    'nvim-telescope/telescope.nvim',
+    version = '*',
+    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-live-grep-args.nvim' },
     config = function()
       require("telescope").load_extension("live_grep_args")
     end
@@ -57,7 +75,8 @@ require("lazy").setup({
   },
 
   -- Treesitter
-    { -- Highlight, edit, and navigate code
+  {
+      -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
@@ -68,26 +87,27 @@ require("lazy").setup({
   },
   -- add context info for super long functions / classes / whatever.
   'nvim-treesitter/nvim-treesitter-context',
+  'averms/black-nvim',
 
   -- Git stuff
   'airblade/vim-gitgutter',
-  { "ruifm/gitlinker.nvim", dependencies = {"nvim-lua/plenary.nvim" }}, -- get github link to given code
-  "f-person/git-blame.nvim", -- git blame inline
+  { "ruifm/gitlinker.nvim",      dependencies = { "nvim-lua/plenary.nvim" } }, -- get github link to given code
+  "f-person/git-blame.nvim",                                            -- git blame inline
 
   -- Lualine for status line
-  { "nvim-lualine/lualine.nvim", dependencies = {"kyazdani42/nvim-web-devicons"} },
+  { "nvim-lualine/lualine.nvim", dependencies = { "kyazdani42/nvim-web-devicons" } },
 
   -- Harpoon for jumping between files
   "ThePrimeagen/harpoon",
 
   -- NvimTree
-  { "kyazdani42/nvim-tree.lua", dependencies = {"kyazdani42/nvim-web-devicons"} },
+  { "kyazdani42/nvim-tree.lua", dependencies = { "kyazdani42/nvim-web-devicons" } },
 
   -- Whichkey - shows suggestions for leader key followup
   "max397574/which-key.nvim",
 
   -- Auto pair keys - auto close brackets etc.
-  { "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup {} end },
+  { "windwp/nvim-autopairs",    config = function() require("nvim-autopairs").setup {} end },
 
   -- OSCYank for cross-ssh yanking
   "ojroques/nvim-osc52",
