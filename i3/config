@@ -180,8 +180,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # suspend
 bindsym $mod+Shift+s exec "systemctl suspend"
 # lock screen
-# FIXME: this bindsym doesn't seem to be working. I feel like lock_screen.sh is not found when called from i3.
-bindsym $mod+Shift+l exec --no-startup-id "lock_screen.sh"
+bindsym $mod+Shift+l exec --no-startup-id "$HOME/codes/dotfiles/bin/lock_screen.sh"
 
 
 # resize window (you can also use the mouse for that)
