@@ -38,7 +38,7 @@ font iosevka nerd font 12
 # set screen resolution correctly on startup
 # exec --no-startup-id xrandr --output HDMI-2 --auto --mode 3840x2160 --dpi 120 --scale 1x1 --pos 3840x0
 # TODO: replace this with a script that's able to determine if an external screen is connected.
-exec_always --no-startup-id xrandr --output eDP-1 --auto --mode 1920x1080 --dpi 120 --brightness 0.5
+exec_always --no-startup-id xrandr --output eDP-1 --auto --mode 1920x1080 --dpi 120
 
 # connect to home wifi on startup - it requires sudo so probably impossible to be handled on startup
 # TODO: consider replacing with a script that first checks the ping result
@@ -48,8 +48,8 @@ exec --no-startup-id sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/cli.
 exec_always --no-startup-id setxkbmap pl
 
 # Adjust brightness with keys
-bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/codes/dotfiles/bin/bright.sh +
-bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/codes/dotfiles/bin/bright.sh -
+bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/codes/dotfiles/bin/brightness.py +
+bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/codes/dotfiles/bin/brightness.py -
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
