@@ -48,10 +48,8 @@ exec --no-startup-id sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/cli.
 exec_always --no-startup-id setxkbmap pl
 
 # Adjust brightness with keys
-bindsym XF86KbdBrightnessUp exec --no-startup-id bright.sh +
-bindsym XF86MonBrightnessUp exec --no-startup-id bright.sh +
-bindsym XF86KbdBrightnessDown exec --no-startup-id bright.sh -
-bindsym XF86MonBrightnessDown exec --no-startup-id bright.sh -
+bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/codes/dotfiles/bin/bright.sh +
+bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/codes/dotfiles/bin/bright.sh -
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
