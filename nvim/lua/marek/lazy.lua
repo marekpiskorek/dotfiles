@@ -56,6 +56,7 @@ require("lazy").setup({
   { "catppuccin/nvim",             name = "catppuccin" },
   { "dasupradyumna/midnight.nvim", lazy = false,       priority = 1000 },
   { 'maxmx03/solarized.nvim',      lazy = false,       priority = 1000 },
+  { 'phha/zenburn.nvim',           lazy = false,       priority = 1000 },
 
   -- Telescope and its dependencies
   {
@@ -76,7 +77,7 @@ require("lazy").setup({
 
   -- Treesitter
   {
-      -- Highlight, edit, and navigate code
+    -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
@@ -92,7 +93,7 @@ require("lazy").setup({
   -- Git stuff
   'airblade/vim-gitgutter',
   { "ruifm/gitlinker.nvim",      dependencies = { "nvim-lua/plenary.nvim" } }, -- get github link to given code
-  "f-person/git-blame.nvim",                                            -- git blame inline
+  "f-person/git-blame.nvim",                                                   -- git blame inline
 
   -- Lualine for status line
   { "nvim-lualine/lualine.nvim", dependencies = { "kyazdani42/nvim-web-devicons" } },
