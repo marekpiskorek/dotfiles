@@ -3,7 +3,20 @@ local servers = {
   dockerls = {},
   html = {},
   jsonls = {},
-  pyright = {},
+  pylsp = {
+    settings = {
+      pylsp = {
+        plugins = {
+          pylint = {
+            args = {
+              ignore = { 'E501', 'E231' },
+              maxLineLength = 120,
+            }
+          }
+        }
+      }
+    }
+  },
   sqlls = {},
   terraformls = {},
   tflint = {},
@@ -98,5 +111,5 @@ local function on_list(options)
   vim.api.nvim_command('cfirst')
 end
 
-vim.lsp.buf.definition{on_list=on_list}
-vim.lsp.buf.references(nil, {on_list=on_list})
+vim.lsp.buf.definition { on_list = on_list }
+vim.lsp.buf.references(nil, { on_list = on_list })

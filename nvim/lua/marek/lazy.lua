@@ -88,7 +88,6 @@ require("lazy").setup({
   },
   -- add context info for super long functions / classes / whatever.
   'nvim-treesitter/nvim-treesitter-context',
-  'averms/black-nvim',
 
   -- Git stuff
   'airblade/vim-gitgutter',
@@ -111,7 +110,7 @@ require("lazy").setup({
   { "windwp/nvim-autopairs",    config = function() require("nvim-autopairs").setup {} end },
 
   -- OSCYank for cross-ssh yanking
-  "ojroques/nvim-osc52",
+  -- "ojroques/nvim-osc52",
 
   -- Auto highlight the word's other occurrences - commented out because of TS errors
   -- use "RRethy/vim-illuminate"
@@ -146,5 +145,8 @@ require("lazy").setup({
   "christoomey/vim-tmux-navigator",
 
   -- Copilot
-  "github/copilot.vim"
+  -- "github/copilot.vim"
+
+  -- Black formatter for Python code
+  'averms/black-nvim',
 })
