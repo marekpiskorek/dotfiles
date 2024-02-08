@@ -2,7 +2,7 @@
 
 import subprocess
 
-command = "mGBA-0.10.3-appimage-x64.appimage --appimage-extract-and-run &"
+command = "doNotPlayWhenYouCanBeProductive.appimage --appimage-extract-and-run &"
 text = "I have nothing better to do. I will waste time."
 
 print(
