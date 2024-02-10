@@ -3,26 +3,12 @@ local servers = {
   dockerls = {},
   html = {},
   jsonls = {},
-  pylsp = {
-    settings = {
-      pylsp = {
-        plugins = {
-          pylint = {
-            args = {
-              ignore = { 'E501', 'E231' },
-              maxLineLength = 120,
-            }
-          }
-        }
-      }
-    }
-  },
+  pyright = {},
   sqlls = {},
   terraformls = {},
   tflint = {},
   gopls = {
     gopls = {
-      -- ["local"] = "samsaradev.io",
       usePlaceholders = true,
       memoryMode = "DegradeClosed",
     },
