@@ -11,7 +11,7 @@
     reb = !"git co master && git pull && git co - && git rebase master"
 
 [user]
-	email = marek.piskorek@samsara.com
+  email = marek.piskorek@pm.me
 	name = Marek Piskorek
 
 [push]
@@ -25,6 +25,7 @@
 
 [diff]
 	colorMoved = default
+
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
