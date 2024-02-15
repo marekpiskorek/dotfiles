@@ -100,6 +100,9 @@ require("lazy").setup({
   -- Harpoon for jumping between files
   "ThePrimeagen/harpoon",
 
+  -- Note taking with global-note (but in fact it's not that global)
+  'backdround/global-note.nvim',
+
   -- NvimTree
   { "kyazdani42/nvim-tree.lua", dependencies = { "kyazdani42/nvim-web-devicons" } },
 
