@@ -23,13 +23,13 @@ opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
 opt.signcolumn = "yes" -- always show the sign column otherwise it would shift the text each time
 opt.smartcase = true -- smart case
 opt.smartindent = true -- make indenting smarter again
-opt.spell = false -- spelling...
+opt.spell = true -- spelling - treesitter by default disables spellchecks in code, allowing it in MD files and comments.
 opt.spelllang = "en" -- ...in the kings language
 opt.splitbelow = true -- force all horizontal splits to go below current window
 opt.splitright = true -- force all vertical splits to go to the right of current window
 opt.swapfile = false -- creates a swapfile
 opt.tabstop = tabLength -- insert 2 spaces for a tab
-opt.termguicolors = false -- set term gui colors (most terminals support this)
+opt.termguicolors = true -- set term gui colors (most terminals support this)
 opt.title = true -- set the title of window to the value of the titlestring
 opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
 opt.undodir = vim.fn.stdpath "cache" .. "/undo"

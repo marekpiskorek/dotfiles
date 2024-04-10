@@ -7,3 +7,6 @@ require "lspconfig".html.setup { on_attach = on_attach }
 require "lspconfig".jsonls.setup { on_attach = on_attach }
 require "lspconfig".sqlls.setup { on_attach = on_attach }
 require "lspconfig".lua_ls.setup { on_attach = on_attach }
+require "lspconfig".terraformls.setup { on_attach = on_attach }
+require "lspconfig".lemminx.setup { on_attach = on_attach }
+require "lspconfig".pyright.setup { on_attach = on_attach }

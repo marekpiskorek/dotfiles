@@ -122,8 +122,14 @@ bindkey -s '^o' 'lfcd\n'
 alias v=nvim
 alias g=git
 alias ls="lsd -lah"
-alias cat=bat
+# alias cat=bat - harmful in case of scripts as it adds to the output.
 alias python=python3 # OMG why this isn't working out of the box?
+# alias pt="TEST_DB_NAME=codility_test pytest --reuse-db --log-level=ERROR --disable-pytest-warnings"
+alias pt="TEST_DB_NAME=codility_test pytest --log-level=ERROR --disable-pytest-warnings"
+
+# used in .gitignore in repos
+# todo: set this variable on cd-ing into particular repos
+export GIT_DEFAULT_BRANCH=trunk
 
 # Codility specific for easier running frontendV2 locally.
 alias sso='source aws-profile-sso main-L2'

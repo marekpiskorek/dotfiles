@@ -9,7 +9,7 @@ require("nvim-tree").setup({
     },
     filters = {
         dotfiles = true,
-        custom = { "^.git$" },
+        custom = { "^.git$", "^__pycache__$" },
     },
 })
 

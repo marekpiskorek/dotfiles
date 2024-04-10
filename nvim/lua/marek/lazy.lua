@@ -100,9 +100,6 @@ require("lazy").setup({
   -- Harpoon for jumping between files
   "ThePrimeagen/harpoon",
 
-  -- Note taking with global-note (but in fact it's not that global)
-  'backdround/global-note.nvim',
-
   -- NvimTree
   { "kyazdani42/nvim-tree.lua", dependencies = { "kyazdani42/nvim-web-devicons" } },
 
@@ -148,8 +145,21 @@ require("lazy").setup({
   "christoomey/vim-tmux-navigator",
 
   -- Copilot
-  -- "github/copilot.vim"
+  "github/copilot.vim",
 
   -- Black formatter for Python code
   'averms/black-nvim',
+
+  -- Run .devcontainer builds from within nvim - doesn't seem to be working for our devcontainers
+  -- "jamestthompson3/nvim-remote-containers",
+
+  { -- aerial - code outline window for skimming and quick navigation
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+  }
 })

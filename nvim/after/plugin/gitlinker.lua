@@ -1,10 +1,7 @@
-require 'gitlinker'.setup {
-  opts = {
-    action_callback = function(url)
-      -- yank to unnamed register
-      vim.api.nvim_command('let @" = \'' .. url .. '\'')
-      -- copy to the system clipboard using OSC52
-      vim.fn.OSCYank(url)
-    end,
-  },
-}
+require 'gitlinker'.setup({
+  callbacks = {
+    ["github.com"] = require "gitlinker.hosts".get_github_type_url,
+    ["gitlab.com"] = require "gitlinker.hosts".get_gitlab_type_url,
+    ["gitlab.codility.net"] = require "gitlinker.hosts".get_gitlab_type_url,
+  }
+})

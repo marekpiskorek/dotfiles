@@ -19,6 +19,7 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  -- copilot = {},
 }
 
 -- Setup neovim lua configuration
