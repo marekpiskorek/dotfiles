@@ -1,7 +1,8 @@
 -- local dim_blue = "#485e7d"
 -- vim.opt.background = "dark"
 -- vim.cmd("colorscheme midnight")
-vim.cmd("colorscheme catppuccin-macchiato")
+vim.cmd("colorscheme gruvbox")
+vim.o.background = "light"
 -- vim.cmd("colorscheme kanagawa")
 -- require("zenburn").setup()
 

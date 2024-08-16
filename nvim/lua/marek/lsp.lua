@@ -4,15 +4,7 @@ local servers = {
   html = {},
   jsonls = {},
   pyright = {},
-  sqlls = {},
   terraformls = {},
-  tflint = {},
-  gopls = {
-    gopls = {
-      usePlaceholders = true,
-      memoryMode = "DegradeClosed",
-    },
-  },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },

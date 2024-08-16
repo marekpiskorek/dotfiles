@@ -1,6 +1,6 @@
 [core]
-  editor = /home/marek.piskorek/bin/nvim.appimage
-  pager = delta
+	editor = nvim
+  ; pager = delta
 
 [alias]
     ci = commit
@@ -11,14 +11,14 @@
     reb = !"git co $GIT_DEFAULT_BRANCH && git pull && git co - && git rebase $GIT_DEFAULT_BRANCH"
 
 [user]
-  email = marek.piskorek@pm.me
+  email = marek.piskorek@codility.com
 	name = Marek Piskorek
 
 [push]
 	default = simple
 
-[interactive]
-	diffFilter = delta --color-only
+; [interactive]
+; 	diffFilter = delta --color-only
 
 [delta]
 	navigate = true  # use n and N to move between diff sections
@@ -31,6 +31,7 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+
 [safe]
 	directory = /home/marek.piskorek/codes/codility
 	directory = ../

@@ -57,6 +57,8 @@ require("lazy").setup({
   { "dasupradyumna/midnight.nvim", lazy = false,       priority = 1000 },
   { 'maxmx03/solarized.nvim',      lazy = false,       priority = 1000 },
   { 'phha/zenburn.nvim',           lazy = false,       priority = 1000 },
+  { "ellisonleao/gruvbox.nvim",    priority = 1000,    config = true,  opts = ... },
+
 
   -- Telescope and its dependencies
   {
@@ -113,7 +115,7 @@ require("lazy").setup({
   -- "ojroques/nvim-osc52",
 
   -- Auto highlight the word's other occurrences - commented out because of TS errors
-  -- use "RRethy/vim-illuminate"
+  "RRethy/vim-illuminate",
 
   -- Terraform support
   "hashivim/vim-terraform",

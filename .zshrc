@@ -89,13 +89,8 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # This alias comes before the other ones as it is used elsewhere as well.
-alias nvim=$HOME/bin/nvim.appimage
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+export EDITOR='nvim'
+
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -121,7 +116,10 @@ bindkey -s '^o' 'lfcd\n'
 # For a full list of active aliases, run `alias`.
 alias v=nvim
 alias g=git
-alias ls="lsd -lah"
+if command -v lsd &> /dev/null ; then
+    alias ls="lsd -lah"
+fi
+alias zed="open -a /Applications/Zed.app -n"
 # alias cat=bat - harmful in case of scripts as it adds to the output.
 alias python=python3 # OMG why this isn't working out of the box?
 # alias pt="TEST_DB_NAME=codility_test pytest --reuse-db --log-level=ERROR --disable-pytest-warnings"
@@ -145,6 +143,16 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# Handle correct version of node - this is also required for Copilot plugin in Nvim to work.
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Path to the main codility monolith repo https://gitlab.codility.net/codility/codility:
+export CODILITY_ROOT=$HOME/codes/codility
+# Path to the infrastructure repo https://gitlab.codility.net/codility/infrastructure:
+export CODILITY_INFRA=$HOME/codes/infrastructure
+# Path to the devel-tools repo https://gitlab.codility.net/codility/devel-tools:
+export CODILITY_DEVTOOLS=$HOME/codes/devel-tools
+# source $CODILITY_DEVTOOLS/setup.sh - uncomment once on oncall, this produces a lot of noise.
+

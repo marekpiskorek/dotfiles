@@ -37,6 +37,7 @@ vim.cmd([[let g:terraform_fmt_on_save=1]])
 vim.cmd([[let g:terraform_align=1]])
 
 -- custom commands
+-- Fixme: this doesn't need to be the total path starting with /
 vim.api.nvim_create_user_command("CopyRelPath", function()
     local path = vim.fn.expand("%:p")
     vim.fn.setreg("+", path)

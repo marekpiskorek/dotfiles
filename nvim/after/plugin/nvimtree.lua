@@ -12,5 +12,3 @@ require("nvim-tree").setup({
         custom = { "^.git$", "^__pycache__$" },
     },
 })
-
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFindFile<CR>")

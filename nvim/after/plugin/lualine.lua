@@ -1,6 +1,6 @@
 require("lualine").setup {
   options = { disabled_filetypes = { statusline = { "packer", "NvimTree" } } },
-  theme = 'zenburn',
+  theme = 'gruvbox_light',
   sections = {
     lualine_b = {
       -- { 'branch' }, { 'diff' }, { 'diagnostics' }
