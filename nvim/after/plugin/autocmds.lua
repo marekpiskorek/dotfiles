@@ -9,20 +9,21 @@ api.nvim_create_autocmd("TextYankPost", {
 -- autoformat on save
 local augroup = api.nvim_create_augroup("LspFormatting", {})
 require("null-ls").setup({
-    -- you can reuse a shared lspconfig on_attach callback here
-    on_attach = function(client, bufnr)
-        if client.supports_method("textDocument/formatting") then
-            api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            api.nvim_create_autocmd("BufWritePre", {
-                group = augroup,
-                buffer = bufnr,
-                command = function()
-                    vim.lsp.buf.format({bufnr=bufnr})
-                end,
-            })
-            else print("it doesn't?")
-        end
-    end,
+  -- you can reuse a shared lspconfig on_attach callback here
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        command = function()
+          vim.lsp.buf.format({ bufnr = bufnr })
+        end,
+      })
+    else
+      print("it doesn't?")
+    end
+  end,
 })
 
 -- Understanding the terraform filetypes
@@ -38,8 +39,23 @@ vim.cmd([[let g:terraform_align=1]])
 
 -- custom commands
 -- Fixme: this doesn't need to be the total path starting with /
-vim.api.nvim_create_user_command("CopyRelPath", function()
-    local path = vim.fn.expand("%:p")
-    vim.fn.setreg("+", path)
-    vim.notify('Copied "' .. path .. '" to the clipboard!')
+api.nvim_create_user_command("CopyRelPath", function()
+  local path = vim.fn.expand("%:p")
+  vim.fn.setreg("+", path)
+  vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
+
+api.nvim_create_user_command(
+  'Notes',
+  function()
+    require('telescope.builtin').find_files({ cwd = "~/Documents/personal-notes" })
+  end,
+  {}
+)
+api.nvim_create_user_command(
+  'NotesFuzzyFind',
+  function()
+    require('telescope.builtin').live_grep({ cwd = "~/Documents/personal-notes" })
+  end,
+  {}
+)

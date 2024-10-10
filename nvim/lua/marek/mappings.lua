@@ -71,7 +71,7 @@ keymap("n", "<C-y>", "<cmd>Telescope keymaps<CR>")                              
 keymap('n', '<space>g',
   function()
     require('telescope').extensions.live_grep_args.live_grep_args(
-      { layout_strategy = 'vertical', layout_config = { width = 0.5 }}
+      { layout_strategy = 'vertical', layout_config = { width = 0.5 } }
     )
   end,
   opts)      -- fuzzy find
@@ -89,4 +89,6 @@ keymap('v', '<space>g',
 keymap('n', 'gr',
   function() require 'telescope.builtin'.lsp_references { layout_strategy = 'vertical', layout_config = { width = 0.5 } } end,
   opts)
-keymap("n", "<Space>rr", function() require 'telescope.builtin'.resume {} end, opts)  -- resume last telescope search
+keymap("n", "<Space>rr", function() require 'telescope.builtin'.resume {} end, opts) -- resume last telescope search
+keymap("n", "<Leader>n", "<cmd>Notes<CR>")
+keymap("n", "<Leader>m", "<cmd>NotesFuzzyFind<CR>")

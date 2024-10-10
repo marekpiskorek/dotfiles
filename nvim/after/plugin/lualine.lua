@@ -1,5 +1,5 @@
 require("lualine").setup {
-  options = { disabled_filetypes = { statusline = { "packer", "NvimTree" } } },
+  options = { disabled_filetypes = { statusline = { "packer", "NvimTree", "aerial" } } },
   theme = 'gruvbox_light',
   sections = {
     lualine_b = {
