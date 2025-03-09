@@ -156,3 +156,4 @@ export CODILITY_INFRA=$HOME/codes/infrastructure
 export CODILITY_DEVTOOLS=$HOME/codes/devel-tools
 # source $CODILITY_DEVTOOLS/setup.sh - uncomment once on oncall, this produces a lot of noise.
 
+export PATH=$PATH:/Users/marek.piskorek/.local/bin

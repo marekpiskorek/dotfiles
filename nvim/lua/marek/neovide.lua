@@ -1,7 +1,7 @@
 if vim.g.neovide then
     -- colors and font
-    vim.cmd("colorscheme gruvbox")
-    vim.o.background = "light"
+    -- vim.cmd("colorscheme gruvbox")
+    -- vim.o.background = "light"
     vim.o.guifont = "Iosevka Nerd Font:h14"
     -- padding and fullscreen
     vim.g.neovide_padding_top = 1

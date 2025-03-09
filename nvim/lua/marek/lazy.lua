@@ -58,6 +58,20 @@ require("lazy").setup({
   { 'maxmx03/solarized.nvim',      lazy = false,       priority = 1000 },
   { 'phha/zenburn.nvim',           lazy = false,       priority = 1000 },
   { "ellisonleao/gruvbox.nvim",    priority = 1000,    config = true,  opts = ... },
+  { "AlexvZyl/nordic.nvim",        priority = 1000 },
+  { "theamallalgi/zitchdog",       priority = 1000 },
+  {
+    "neanias/everforest-nvim",
+    version = false,
+    lazy = false,
+    priority = 1000, -- make sure to load this before all the other start plugins
+    -- Optional; default configuration will be used if setup isn't called.
+    config = function()
+      require("everforest").setup({
+        -- Your config here
+      })
+    end,
+  },
 
 
   -- Telescope and its dependencies
@@ -111,9 +125,6 @@ require("lazy").setup({
   -- Auto pair keys - auto close brackets etc.
   { "windwp/nvim-autopairs",    config = function() require("nvim-autopairs").setup {} end },
 
-  -- OSCYank for cross-ssh yanking
-  -- "ojroques/nvim-osc52",
-
   -- Auto highlight the word's other occurrences - commented out because of TS errors
   "RRethy/vim-illuminate",
 
@@ -130,30 +141,13 @@ require("lazy").setup({
   -- Vim Fugitive, for integration with FZF
   "tpope/vim-fugitive",
 
-  -- Handle Github PRs and issues from Nvim - not going to use for now, let's not be autistic
-  -- {
-  --   'pwntester/octo.nvim',
-  --   requires = {
-  --     'nvim-lua/plenary.nvim',
-  --     'nvim-telescope/telescope.nvim',
-  --     'nvim-tree/nvim-web-devicons',
-  --   },
-  --   config = function ()
-  --     require"octo".setup()
-  --   end
-  -- },
-
   -- Move smoothly between Nvim and Tmux panes
   "christoomey/vim-tmux-navigator",
 
   -- Copilot
   "github/copilot.vim",
-
   -- Black formatter for Python code
   'averms/black-nvim',
-
-  -- Run .devcontainer builds from within nvim - doesn't seem to be working for our devcontainers
-  -- "jamestthompson3/nvim-remote-containers",
 
   { -- aerial - code outline window for skimming and quick navigation
     'stevearc/aerial.nvim',
@@ -169,6 +163,6 @@ require("lazy").setup({
     opts = {},
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },   -- if you prefer nvim-web-devicons
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   }
 })
