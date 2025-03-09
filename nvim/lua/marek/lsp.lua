@@ -1,7 +1,7 @@
 local servers = {
-  tsserver = {},
   dockerls = {},
   html = {},
+  gopls = {},
   jsonls = {},
   pyright = {},
   terraformls = {},

@@ -91,7 +91,6 @@ source $ZSH/oh-my-zsh.sh
 # This alias comes before the other ones as it is used elsewhere as well.
 export EDITOR='nvim'
 
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -116,25 +115,18 @@ bindkey -s '^o' 'lfcd\n'
 # For a full list of active aliases, run `alias`.
 alias v=nvim
 alias g=git
+# This one might look sus but I just want to get used to the fact that yay is more usable than pacman.
+alias pacman=yay
 if command -v lsd &> /dev/null ; then
-    alias ls="lsd -lah"
+    alias ls="lsd -lh"
 fi
-alias zed="open -a /Applications/Zed.app -n"
 # alias cat=bat - harmful in case of scripts as it adds to the output.
-alias python=python3 # OMG why this isn't working out of the box?
-# alias pt="TEST_DB_NAME=codility_test pytest --reuse-db --log-level=ERROR --disable-pytest-warnings"
-alias pt="TEST_DB_NAME=codility_test pytest --log-level=ERROR --disable-pytest-warnings"
 
 # used in .gitignore in repos
 # todo: set this variable on cd-ing into particular repos
 export GIT_DEFAULT_BRANCH=trunk
 
-# Codility specific for easier running frontendV2 locally.
-alias sso='source aws-profile-sso main-L2'
-
-# Custom function for find and replace with ag. Needs to be defined in another way as export does not handle this correctly.
-# function agr { ag -0 -l --no-color "$1" | AGR_FROM="$1" AGR_TO="$2" xargs -r0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g'; }
-# export -f agr
+alias neovide="~/.local/bin/neovide.AppImage &"
 
 # Add the juicy stuff to PATH: npm, cargo, go bins and my custom bin path
 export PATH=~/.npm-global/bin:~/.local/bin/:~/.cargo/bin:~/bin/go/bin:~/bin/:~/go/bin/:~/codes/dotfiles/bin/:$PATH
@@ -147,13 +139,4 @@ eval "$(pyenv init -)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Path to the main codility monolith repo https://gitlab.codility.net/codility/codility:
-export CODILITY_ROOT=$HOME/codes/codility
-# Path to the infrastructure repo https://gitlab.codility.net/codility/infrastructure:
-export CODILITY_INFRA=$HOME/codes/infrastructure
-# Path to the devel-tools repo https://gitlab.codility.net/codility/devel-tools:
-export CODILITY_DEVTOOLS=$HOME/codes/devel-tools
-# source $CODILITY_DEVTOOLS/setup.sh - uncomment once on oncall, this produces a lot of noise.
-
 export PATH=$PATH:/Users/marek.piskorek/.local/bin

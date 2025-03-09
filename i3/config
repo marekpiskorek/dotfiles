@@ -33,7 +33,7 @@ font iosevka nerd font 12
 # Start the composition manager - picom
 # exec --no-startup-id picom -b
 # Set default wallpaper on startup
-# exec --no-startup-id feh --randomize --recursive --bg-scale /home/marek/Pictures/Wallpapers
+exec --no-startup-id feh --randomize --recursive --bg-scale /home/marek/Pictures/Wallpapers
 
 # set screen resolution correctly on startup
 # exec --no-startup-id xrandr --output HDMI-2 --auto --mode 3840x2160 --dpi 120 --scale 1x1 --pos 3840x0
@@ -47,21 +47,24 @@ exec --no-startup-id sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/cli.
 # Set polish keyboard (TODO: there should be a better way to handle this)
 exec_always --no-startup-id setxkbmap pl
 
+# Turn the wifi interface off on startup - this is required for netctl to work properly
+exec --no-startup-id sudo ip link set wlan0 down
+
 # Adjust brightness with keys
 bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/codes/dotfiles/bin/brightness.py +
 bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/codes/dotfiles/bin/brightness.py -
 
 # Use pactl to adjust volume in PulseAudio.
 # set $refresh_i3status killall -SIGUSR1 i3status
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && $refresh_i3status
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # change volume or toggle mute
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
+# bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+# bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+# bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
 
 
 # Play / pause ncspot
@@ -79,8 +82,9 @@ bindsym $mod+Shift+Return exec firefox
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start rofi (a program launcher)
-bindsym $mod+space exec --no-startup-id "rofi -modi drun,run -show drun"
+# start rofi (a program launcher) (include variable for finding flatpak apps)
+bindsym $mod+space exec --no-startup-id "XDG_DATA_DIRS=/home/marek/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share rofi -drun-reload-desktop-cache -show-icons -terminal alacritty -font 'Source Sans 3 12' -modi drun,run -show drun"
+# bindsym $mod+space exec --no-startup-id "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
@@ -124,7 +128,7 @@ bindsym $mod+f fullscreen toggle
 # bindsym $mod+e layout toggle split
 
 # Change wallpaper randomly
-bindsym $mod+Shift+w exec "feh --randomize --recursive --bg-scale /home/marek/pictures/Wallpapers"
+bindsym $mod+Shift+w exec "feh --randomize --recursive --bg-scale /home/marek/Pictures/Wallpapers"
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
