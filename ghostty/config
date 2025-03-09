@@ -1,0 +1,79 @@
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   /Users/marek.piskorek/Library/Application Support/com.mitchellh.ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+
+# Config syntax crash course
+# ==========================
+# # The config file consists of simple key-value pairs,
+# # separated by equals signs.
+theme = "everforest dark - hard"
+font-family = "Iosevka nerd font"
+font-family-bold = "Iosevka nerd font bold"
+font-family-italic = "Iosevka nerd font italic"
+font-family-bold-italic = "Iosevka nerd font bold italic"
+font-size = 14
+# window-padding-x = 2
+#
+# # Spacing around the equals sign does not matter.
+# # All of these are identical:
+# key=value
+# key= value
+# key =value
+# key = value
+#
+# # Any line beginning with a # is a comment. It's not possible to put
+# # a comment after a config option, since it would be interpreted as a
+# # part of the value. For example, this will have a value of "#123abc":
+# background = #123abc
+#
+# # Empty values are used to reset config keys to default.
+# key =
+#
+# # Some config options have unique syntaxes for their value,
+# # which is explained in the docs for that config option.
+# # Just for example:
+# resize-overlay-duration = 4s 200ms
+#
+# Let's make this TMUX-like
+#
+#
+keybind = ctrl+q>c=new_tab
+keybind = ctrl+q>n=next_tab
+keybind = ctrl+q>p=previous_tab
+
+keybind = ctrl+q>physical:1=goto_tab:1
+keybind = ctrl+q>physical:2=goto_tab:2
+keybind = ctrl+q>physical:3=goto_tab:3
+keybind = ctrl+q>physical:4=goto_tab:4
+keybind = ctrl+q>physical:5=goto_tab:5
+keybind = ctrl+q>physical:6=goto_tab:6
+keybind = ctrl+q>physical:7=goto_tab:7
+keybind = ctrl+q>physical:8=goto_tab:8
+keybind = ctrl+q>physical:9=goto_tab:9
+
+keybind = ctrl+q>d=new_split:down
+keybind = ctrl+q>r=new_split:right
+
+keybind = ctrl+q>h=goto_split:left
+keybind = ctrl+q>j=goto_split:down
+keybind = ctrl+q>k=goto_split:up
+keybind = ctrl+q>l=goto_split:right
+
+keybind = ctrl+q>x=close_window
+keybind = ctrl+q>z=toggle_split_zoom
+
+keybind = super+r=reload_config
+window-save-state = always
