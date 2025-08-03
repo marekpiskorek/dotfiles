@@ -13,7 +13,7 @@ docker cp "$DOTFILES_DIR"/nvim $container_id:/root/.config/nvim
 docker cp "$DOTFILES_DIR"/.zshrc $container_id:/root/.zshrc
 
 # Run installation
-docker exec -it $container_id /bin/sh -c "chmod +x /root/install_nvim.sh && /root/install_nvim.sh"
+# docker exec -it $container_id /bin/sh -c "chmod +x /root/install_nvim.sh && /root/install_nvim.sh"
 
 # Clean up
-docker exec -it $container_id /bin/sh -c "rm /root/install_nvim.sh"
+# docker exec -it $container_id /bin/sh -c "rm /root/install_nvim.sh"

@@ -2,9 +2,14 @@ local opt = vim.opt
 local tabLength = 2 -- avoid having different values for shiftwidth and tabstop
 
 opt.backup = false -- creates a backup file
-opt.clipboard = "unnamedplus" -- allow nvim to access system clipboard
--- opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
+vim.g.have_nerd_font = true
+vim.schedule(function()
+	opt.clipboard = "unnamedplus" -- allow nvim to access system clipboard - we're doing this async to not increase the startup time.
+end)
+vim.o.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 opt.colorcolumn = "99999" -- fixes indentline for now
+vim.o.inccommand = 'split'
 opt.completeopt = { "menuone", "noselect" }
 opt.cursorline = true -- highlight the current line
 -- opt.expandtab = false -- don't convert tabs to spaces
