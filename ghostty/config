@@ -19,12 +19,12 @@
 # ==========================
 # # The config file consists of simple key-value pairs,
 # # separated by equals signs.
-theme = "everforest dark - hard"
+theme = "Everforest Dark - Hard"
 font-family = "Iosevka nerd font"
 font-family-bold = "Iosevka nerd font bold"
 font-family-italic = "Iosevka nerd font italic"
 font-family-bold-italic = "Iosevka nerd font bold italic"
-font-size = 14
+font-size = 20
 # window-padding-x = 2
 #
 # # Spacing around the equals sign does not matter.

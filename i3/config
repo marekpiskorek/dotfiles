@@ -74,10 +74,10 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl --player=spotify play-pause
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec ghostty
 
-# start firefox
-bindsym $mod+Shift+Return exec firefox
+# start web browser
+bindsym $mod+Shift+Return exec zen-browser
 
 # kill focused window
 bindsym $mod+Shift+q kill
