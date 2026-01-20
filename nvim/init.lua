@@ -83,7 +83,7 @@ vim.opt.termguicolors = true -- set term gui colors (most terminals support this
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
-local tabLength = 2 -- avoid having different values for shiftwidth and tabstop
+local tabLength = 4 -- avoid having different values for shiftwidth and tabstop
 vim.opt.shiftwidth = tabLength -- the number of spaces inserted for each indentation
 vim.opt.tabstop = tabLength -- insert 2 spaces for a tab
 
@@ -358,12 +358,15 @@ require('lazy').setup({
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
-        --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          mappings = {
+            i = {
+              ['<c-enter>'] = 'to_fuzzy_refine',
+              ['<C-k>'] = require('telescope.actions').cycle_history_next,
+              ['<C-j>'] = require('telescope.actions').cycle_history_prev,
+            },
+          },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
@@ -907,8 +910,21 @@ require('lazy').setup({
       require('Comment').setup()
     end,
   },
-  -- Copilot
+  -- Copilot - commented out because I don't want to have my most used command in nvim be `:Copilot disable`
   'github/copilot.vim',
+  {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    dependencies = {
+      { 'nvim-lua/plenary.nvim', branch = 'master' },
+    },
+    build = 'make tiktoken',
+    opts = {
+      -- See Configuration section for options
+    },
+  },
+  {
+    'folke/zen-mode.nvim',
+  },
 
   { -- aerial - code outline window for skimming and quick navigation
     'stevearc/aerial.nvim',
@@ -933,6 +949,9 @@ require('lazy').setup({
   },
   -- Move smoothly between Nvim and Tmux panes
   'christoomey/vim-tmux-navigator',
+
+  -- add context info for super long functions / classes / whatever.
+  'nvim-treesitter/nvim-treesitter-context',
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
@@ -1011,7 +1030,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
@@ -1044,3 +1063,11 @@ require('lazy').setup({
     },
   },
 })
+-- LSP for pytest, installed separately on system
+vim.lsp.config('pytest_lsp', {
+  cmd = { 'pytest-language-server' },
+  filetypes = { 'python' },
+  root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'pytest.ini', '.git' },
+})
+
+-- vim.lsp.enable 'pytest_lsp' - it does not work, unfortunately, maybe I can fix this later.

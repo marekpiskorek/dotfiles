@@ -9,7 +9,8 @@
     br = branch
     patch = !"git ci -am 'f' & git rebase HEAD~2"
     reb = !"git co $GIT_DEFAULT_BRANCH && git pull && git co - && git rebase $GIT_DEFAULT_BRANCH"
-
+    fbr = !"git br | fzf | xargs git checkout"
+    mr = !"git br --show-current | xargs -I {} git push --set-upstream origin {}"  ; this is due to bash not supporting the autocompletion on git push -u origin <TAB>, might be fixed in future
 [user]
   email = marek.piskorek@codility.com
 	name = Marek Piskorek
