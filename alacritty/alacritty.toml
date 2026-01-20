@@ -26,7 +26,7 @@ foreground = "#ebdbb2"
 TERM = "xterm-256color"
 
 [font]
-size = 18.0
+size = 14.0
 
 [font.bold]
 family = "Iosevka nerd font"
@@ -48,4 +48,4 @@ style = "Regular"
 
 [terminal.shell]
 args = ["--login"]
-program = "/bin/zsh"
+program = "/bin/bash"

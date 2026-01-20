@@ -85,7 +85,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 local tabLength = 4 -- avoid having different values for shiftwidth and tabstop
 vim.opt.shiftwidth = tabLength -- the number of spaces inserted for each indentation
-vim.opt.tabstop = tabLength -- insert 2 spaces for a tab
+vim.opt.tabstop = tabLength
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
