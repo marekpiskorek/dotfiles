@@ -14,7 +14,7 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 --
--- Don't convert tabs to spaces
+-- convert tabs to spaces
 vim.opt.expandtab = true
 -- Make line numbers default
 vim.o.number = true
@@ -80,7 +80,7 @@ vim.opt.termguicolors = true -- set term gui colors (most terminals support this
 --  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
 --   See `:help lua-options`
 --   and `:help lua-options-guide`
-vim.o.list = true
+vim.o.list = false
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 local tabLength = 4 -- avoid having different values for shiftwidth and tabstop
@@ -126,6 +126,16 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 
 vim.keymap.set('n', '<Leader>c', '<cmd>CopyRelPath<CR>')
 vim.keymap.set('n', '<C-F>', '<cmd>lua vim.lsp.buf.format()<CR>')
+
+-- Go formatter tool - commented out because some weird shit happens on save breaking struct initialization etc.
+-- local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   pattern = '*.go',
+--   callback = function()
+--     require('go.format').goimports()
+--   end,
+--   group = format_sync_grp,
+-- })
 
 -- This unsets the "last search pattern" register by hitting return
 vim.keymap.set('n', '<CR>', '<cmd>noh<CR><CR>')
@@ -858,7 +868,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'cyberdream'
+      vim.cmd.colorscheme 'mariana'
     end,
   },
 
@@ -882,6 +892,13 @@ require('lazy').setup({
   { 'ellisonleao/gruvbox.nvim', priority = 1000, config = true, opts = ... },
   { 'AlexvZyl/nordic.nvim', priority = 1000 },
   { 'theamallalgi/zitchdog', priority = 1000 },
+  {
+    'ray-x/starry.nvim',
+    priority = 1000,
+    config = function()
+      require('starry').setup { italics = { comments = true } }
+    end,
+  },
   {
     'mcauley-penney/techbase.nvim',
     lazy = false,
@@ -909,18 +926,6 @@ require('lazy').setup({
     config = function()
       require('Comment').setup()
     end,
-  },
-  -- Copilot - commented out because I don't want to have my most used command in nvim be `:Copilot disable`
-  'github/copilot.vim',
-  {
-    'CopilotC-Nvim/CopilotChat.nvim',
-    dependencies = {
-      { 'nvim-lua/plenary.nvim', branch = 'master' },
-    },
-    build = 'make tiktoken',
-    opts = {
-      -- See Configuration section for options
-    },
   },
   {
     'folke/zen-mode.nvim',
@@ -952,6 +957,33 @@ require('lazy').setup({
 
   -- add context info for super long functions / classes / whatever.
   'nvim-treesitter/nvim-treesitter-context',
+
+  {
+    'ray-x/go.nvim',
+    dependencies = { -- optional packages
+      'ray-x/guihua.lua',
+      'neovim/nvim-lspconfig',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    opts = function()
+      require('go').setup(opts)
+      local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        pattern = '*.go',
+        callback = function()
+          require('go.format').goimports()
+        end,
+        group = format_sync_grp,
+      })
+      return {
+        -- lsp_keymaps = false,
+        -- other options
+      }
+    end,
+    event = { 'CmdlineEnter' },
+    ft = { 'go', 'gomod' },
+    -- build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+  },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
@@ -1069,5 +1101,3 @@ vim.lsp.config('pytest_lsp', {
   filetypes = { 'python' },
   root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'pytest.ini', '.git' },
 })
-
--- vim.lsp.enable 'pytest_lsp' - it does not work, unfortunately, maybe I can fix this later.
