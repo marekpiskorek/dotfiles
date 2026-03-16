@@ -738,7 +738,8 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'isort', 'black' },
+        golang = { 'gofmt' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -868,7 +869,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'mariana'
+      vim.cmd.colorscheme 'cyberdream'
     end,
   },
 
@@ -958,33 +959,33 @@ require('lazy').setup({
   -- add context info for super long functions / classes / whatever.
   'nvim-treesitter/nvim-treesitter-context',
 
-  {
-    'ray-x/go.nvim',
-    dependencies = { -- optional packages
-      'ray-x/guihua.lua',
-      'neovim/nvim-lspconfig',
-      'nvim-treesitter/nvim-treesitter',
-    },
-    opts = function()
-      require('go').setup(opts)
-      local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        pattern = '*.go',
-        callback = function()
-          require('go.format').goimports()
-        end,
-        group = format_sync_grp,
-      })
-      return {
-        -- lsp_keymaps = false,
-        -- other options
-      }
-    end,
-    event = { 'CmdlineEnter' },
-    ft = { 'go', 'gomod' },
-    -- build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
-  },
-
+  -- {
+  --   'ray-x/go.nvim',
+  --   dependencies = { -- optional packages
+  --     'ray-x/guihua.lua',
+  --     'neovim/nvim-lspconfig',
+  --     'nvim-treesitter/nvim-treesitter',
+  --   },
+  --   opts = function()
+  --     require('go').setup(opts)
+  --     local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
+  --     vim.api.nvim_create_autocmd('BufWritePre', {
+  --       pattern = '*.go',
+  --       callback = function()
+  --         require('go.format').goimports()
+  --       end,
+  --       group = format_sync_grp,
+  --     })
+  --     return {
+  --       -- lsp_keymaps = false,
+  --       -- other options
+  --     }
+  --   end,
+  --   event = { 'CmdlineEnter' },
+  --   ft = { 'go', 'gomod' },
+  --   -- build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+  -- },
+  --
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
@@ -1057,7 +1058,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
@@ -1094,10 +1095,4 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
-})
--- LSP for pytest, installed separately on system
-vim.lsp.config('pytest_lsp', {
-  cmd = { 'pytest-language-server' },
-  filetypes = { 'python' },
-  root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'pytest.ini', '.git' },
 })
