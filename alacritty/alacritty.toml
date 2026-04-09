@@ -26,29 +26,29 @@ foreground = "#ebdbb2"
 TERM = "xterm-256color"
 
 [font]
-size = 12.0
+size = 18.0
 
 [font.bold]
-family = "JetBrainsMonoNL"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
-family = "JetBrainsMonoNL"
+family = "JetBrainsMono Nerd Font"
 style = "Bold Italic"
 
 [font.italic]
-family = "JetBrainsMonoNL"
+family = "JetBrainsMono Nerd Font"
 style = "Italic"
 
 [font.normal]
-family = "JetBrainsMonoNL"
+family = "JetBrainsMono Nerd Font"
 style = "Regular"
 
 [terminal]
 
 [terminal.shell]
 args = ["--login"]
-program = "/bin/bash"
+program = "/bin/zsh"
 
 [window]
 opacity = 0.8

@@ -7,13 +7,12 @@
     st = status
     co = checkout
     br = branch
-    patch = !"git ci -am 'f' & git rebase HEAD~2"
     reb = !"git co $GIT_DEFAULT_BRANCH && git pull && git co - && git rebase $GIT_DEFAULT_BRANCH"
     fbr = !"git br | fzf | xargs git checkout"
     mr = !"git br --show-current | xargs -I {} git push --set-upstream origin {}"  ; this is due to bash not supporting the autocompletion on git push -u origin <TAB>, might be fixed in future
 [user]
-  email = marek.piskorek@codility.com
-	name = Marek Piskorek
+  email = marek.piskorek@pm.me
+  name = Marek Piskorek
 
 [push]
 	default = simple
@@ -33,6 +32,3 @@
 	required = true
 	clean = git-lfs clean -- %f
 
-[safe]
-	directory = /home/marek.piskorek/codes/codility
-	directory = ../

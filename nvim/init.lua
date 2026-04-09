@@ -127,6 +127,8 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.keymap.set('n', '<Leader>c', '<cmd>CopyRelPath<CR>')
 vim.keymap.set('n', '<C-F>', '<cmd>lua vim.lsp.buf.format()<CR>')
 
+vim.keymap.set('n', ';', ':') -- don't need to press shift every time you want to save file
+
 -- Go formatter tool - commented out because some weird shit happens on save breaking struct initialization etc.
 -- local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
 -- vim.api.nvim_create_autocmd('BufWritePre', {
@@ -869,7 +871,6 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'cyberdream'
     end,
   },
 
@@ -918,6 +919,12 @@ require('lazy').setup({
     config = function()
       require('cyberdream').setup {
         transparent = true, -- Enable transparent background
+        highlights = {
+          -- Highlight groups to override, adding new groups is also possible
+          -- See `:h highlight-groups` for a list of highlight groups or run `:hi` to see all groups and their current values
+          -- Example:
+          Comment = { fg = '#696969', bg = 'NONE', italic = true },
+        },
       }
     end,
   },
@@ -959,6 +966,9 @@ require('lazy').setup({
   -- add context info for super long functions / classes / whatever.
   'nvim-treesitter/nvim-treesitter-context',
 
+  -- autocontinue bullet lists etc
+  'bullets-vim/bullets.vim',
+
   -- {
   --   'ray-x/go.nvim',
   --   dependencies = { -- optional packages
@@ -985,7 +995,6 @@ require('lazy').setup({
   --   ft = { 'go', 'gomod' },
   --   -- build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   -- },
-  --
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
@@ -1026,7 +1035,7 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    main = 'nvim-treesitter.config', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       ensure_installed = { 'bash', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
@@ -1096,3 +1105,11 @@ require('lazy').setup({
     },
   },
 })
+-- LSP for pytest, installed separately on system
+vim.lsp.config('pytest_lsp', {
+  cmd = { 'pytest-language-server' },
+  filetypes = { 'python' },
+  root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'pytest.ini', '.git' },
+})
+
+vim.cmd.colorscheme 'cyberdream'
