@@ -1,5 +1,5 @@
 bindkey -v # vim mode
-bindkey '^R' history-incremental-search-backward
+# bindkey '^R' history-incremental-search-backward
 HIST_STAMPS="dd/mm/yyyy"
 
 export EDITOR='nvim'
@@ -21,20 +21,24 @@ eval "$(starship init zsh)"
 alias v=nvim
 alias g=git
 
+alias cdwa="cd ~/codes/kubecast/services/workload-autoscaler"
+alias cdwoop="cd ~/codes/kubecast/services/workload-optimization"
+
 export GIT_DEFAULT_BRANCH=master
 
+export GOPATH="$HOME/go"
 # Add the juicy stuff to PATH: npm, cargo, go bins and my custom bin path
-export PATH=~/.npm-global/bin:~/.local/bin/:~/.cargo/bin:~/bin/:~/go/bin/:~/bin/dotfiles/bin/:$PATH
+export PATH=~/.npm-global/bin:~/.local/bin/:~/.cargo/bin:~/bin/:~/go/bin/:~/codes/dotfiles/bin/:$PATH
 #
 # Handle correct version of node - this is also required for Copilot plugin in Nvim to work.
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH=$PATH:/Users/marek/.local/bin
 
-nvm use 22 --silent
+# nvm use 22 --silent
 # AWS CLI output should go to stdout
-export AWS_PAGER=""
+# export AWS_PAGER=""
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then

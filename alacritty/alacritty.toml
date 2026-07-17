@@ -26,22 +26,22 @@ foreground = "#ebdbb2"
 TERM = "xterm-256color"
 
 [font]
-size = 18.0
+size = 22.0
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "Iosevka NF"
 style = "Bold"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
+family = "Iosevka NF"
 style = "Bold Italic"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "Iosevka NF"
 style = "Italic"
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "Iosevka NF"
 style = "Regular"
 
 [terminal]
@@ -51,4 +51,4 @@ args = ["--login"]
 program = "/bin/zsh"
 
 [window]
-opacity = 0.8
+opacity = 0.95
